@@ -1,0 +1,15 @@
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/Ex02.GeneratedMSBuildEditorConfig.editorconfig
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/Ex02.AssemblyInfoInputs.cache
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/Ex02.AssemblyInfo.cs
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/Ex02.csproj.CoreCompileInputs.cache
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/Ex02.sourcelink.json
+/workspaces/2024.2-POO/Ex02/bin/Debug/net8.0/Ex02
+/workspaces/2024.2-POO/Ex02/bin/Debug/net8.0/Ex02.deps.json
+/workspaces/2024.2-POO/Ex02/bin/Debug/net8.0/Ex02.runtimeconfig.json
+/workspaces/2024.2-POO/Ex02/bin/Debug/net8.0/Ex02.dll
+/workspaces/2024.2-POO/Ex02/bin/Debug/net8.0/Ex02.pdb
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/Ex02.dll
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/refint/Ex02.dll
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/Ex02.pdb
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/Ex02.genruntimeconfig.cache
+/workspaces/2024.2-POO/Ex02/obj/Debug/net8.0/ref/Ex02.dll
