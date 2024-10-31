@@ -25,16 +25,20 @@ public class Cinema {
     public double Ingresso(){
         if (getdia().equals("Segunda")|| getdia().equals("Terça") || getdia().equals("Quinta")){
             setingresso(16.00);
+
         }
         else if (getdia().equals("Quarta")) {
             setingresso(8.00);
+
         }
         else if (getdia().equals("Sexta") || getdia().equals("Sábado") || getdia().equals("Domingo")) {
             setingresso(20.00);
+
         }
         if (gethorario()>=17 && gethorario() <= 24) {
-            setingresso(getingresso()*0.5);
+            setingresso((getingresso()*0.5)+getingresso());
         }
+        System.out.println(String.format("Seu ingresso custará: R$ %.2f", getingresso()));
         return getingresso();
     }
 }

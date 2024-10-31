@@ -7,11 +7,10 @@ public class UI {
 
         System.out.println("Digite o dia do filme:");
         c1.setdia(leitor.nextLine());
-        System.out.println("Digite o horário do filme");
+        System.out.println("Digite o horário do filme:");
         c1.sethorario(leitor.nextDouble());
 
         c1.Ingresso();
-        System.out.println(String.format("Seu ingresso custará: %.2f", getingresso()));
         leitor.close();
     }
 }
