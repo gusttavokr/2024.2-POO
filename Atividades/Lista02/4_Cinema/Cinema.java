@@ -6,7 +6,7 @@ public class Cinema {
     public String getdia(){
         return this.dia;
     }
-    public double gethorário(){
+    public double gethorario(){
         return this.horario;
     }
     public double getingresso(){
@@ -15,7 +15,7 @@ public class Cinema {
     public void setdia(String d){
         this.dia = d;
     }
-    public void sethorário(double h){
+    public void sethorario(double h){
         this.horario = h;
     } 
     public void setingresso(double i){
@@ -32,7 +32,7 @@ public class Cinema {
         else if (getdia().equals("Sexta") || getdia().equals("Sábado") || getdia().equals("Domingo")) {
             setingresso(20.00);
         }
-        if (gethorário()>=17 && gethorário() <= 24) {
+        if (gethorario()>=17 && gethorario() <= 24) {
             setingresso(getingresso()*0.5);
         }
         return getingresso();
