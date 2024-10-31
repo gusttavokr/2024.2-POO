@@ -38,7 +38,6 @@ public class Cinema {
         if (gethorario()>=17 && gethorario() <= 24) {
             setingresso((getingresso()*0.5)+getingresso());
         }
-        System.out.println(String.format("Seu ingresso custará: R$ %.2f", getingresso()));
         return getingresso();
     }
 }

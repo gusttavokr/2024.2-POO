@@ -10,7 +10,9 @@ public class UI {
         System.out.println("Digite o horário do filme:");
         c1.sethorario(leitor.nextDouble());
 
-        c1.Ingresso();
+        double valor = c1.Ingresso();
+        System.out.println(String.format("Seu ingresso custará: R$ %.2f", valor));
+
         leitor.close();
     }
 }
