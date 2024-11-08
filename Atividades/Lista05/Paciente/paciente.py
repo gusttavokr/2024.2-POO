@@ -2,9 +2,9 @@ from datetime import datetime
 
 class Paciente:
     def __init__(self, Nome, Cpf, Telefone, Nascimento):
-        self.__setNome = Nome
-        self.__setCpf = Cpf
-        self.__setTelefone = Telefone
+        self.__setNome(Nome)
+        self.__setCpf(Cpf)
+        self.__setTelefone(Telefone)
         self.nascimento = Nascimento
 
     def __setNome(self, Nome):
@@ -23,4 +23,11 @@ class Paciente:
         else:
             raise ValueError ("Telefone inválido")
 
-    
+    def Idade(self):
+        dataAtual = datetime.now()
+        anos = dataAtual.year - self.nascimento.year
+        meses = dataAtual.month - self.nascimento.month
+        return f'{anos} anos e {meses} meses'
+
+    def __str__(self):
+        return f"{self.nome} - {self.cpf} - {self.telefone} - {self.nascimento.date()}"
