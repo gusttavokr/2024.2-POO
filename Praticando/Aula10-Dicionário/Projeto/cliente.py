@@ -56,8 +56,8 @@ class Clientes:
     @classmethod
     def salvar(cls):
         # open - cria e abre um arquivo clientes.json
-        # dump - 
-        # vars - 
+        # dump - para subir as informações pro arquivo json
+        # vars - para organizar em dicionário no arquivo
 
         with open ("Praticando/Aula10-Dicionário/Projeto/clientela.json", mode="w") as arquivo:
         # abra um arquivo (nome do arquivo), no modo de leitura para (variável)
