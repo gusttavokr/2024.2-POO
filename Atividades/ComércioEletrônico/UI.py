@@ -14,7 +14,7 @@ class UI: # Interface
             if op == 2:
                 UI.listar_clientes() # Se for 2, liste os clientes
             if op == 3:
-                UI.atualizar_clientes() # Se for três, atualize os clientes
+                UI.atualizar_clientes() # Se for 3, atualize os clientes
 
     @classmethod
     def inserir_cliente(cls): # Criando um cliente
