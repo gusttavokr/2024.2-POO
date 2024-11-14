@@ -37,7 +37,7 @@ class UI:
     @classmethod
     def atualizar_clientes(cls):
         cls.listar_cliente()
-        id = int(input("Informe o id do cliente a ser akterado: "))
+        id = int(input("Informe o id do cliente a ser alterado: "))
         nome = input("Informe o novo nome: ")
         email = input("Informe o novo email: ")
         fone = input("Informe o novo fone: ")

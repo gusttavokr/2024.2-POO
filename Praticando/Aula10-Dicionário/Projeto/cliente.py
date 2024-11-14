@@ -1,16 +1,16 @@
-import json
+import json # Importando biblioteca json para uso de dicionário
 
-class Cliente:
-    def __init__(self, id, nome, email, fone):
+class Cliente: # Criando a classe padrão de cliente
+    def __init__(self, id, nome, email, fone): # Método Construtor
         self.id = id
         self.nome = nome
         self.email = email
         self.fone = fone
 
-    def __str__(self):
+    def __str__(self): # Imprime exatamente como queremos a saída
         return f"{self.id} - {self.nome} - {self.email} - {self.fone}"
 
-class Clientes:
+class Clientes: # Classe Clientes
     objetos = []
 
     @classmethod
