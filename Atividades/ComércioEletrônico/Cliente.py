@@ -39,57 +39,61 @@ class Cliente:
     #     else:
     #         raise ValueError('Fone inválido')
 
-    def __str__(self):
+    def __str__(self): # Formatação do terminal
         return f'{self.id} - {self.nome} - {self.email} - {self.fone}'
     
 class Clientes:
-    objetos = []
+    objetos = [] # Lista de Objetos, (no caso clientes), que serão usados
 
     @classmethod
     def inserir(cls, obj):
-        cls.abrir()
-        id = 0
-        for x in cls.objetos:
-            if x.id > id:
-                id = x.id
-        obj.id = id +1
-        cls.objetos.append(obj)
-        cls.salvar()
+        cls.abrir() # Abrindo o arquivo json, onde está registrado os clientes
+        id = 0 # O id começa em zero
+        for x in cls.objetos: # Percorrendo a lista de objetos
+            if x.id > id: # Se o x for maior que o id
+                id = x.id # Ele se tornará o x.id
+        obj.id = id + 1 # O id do objeto será o maior, mais um
+        cls.objetos.append(obj) 
+        cls.salvar() # Use o método para salvar a alteração
 
     @classmethod
-    def salvar(cls):
-        with open ("Atividades/ComércioEletrônico/clientela.json", mode="w") as arquivo:
+    def salvar(cls): 
+        # Mesma coisa do abrir, porém ele escreve por cima
+        # open - cria e abre um arquivo.json
+        # dump - para subir as informações pro arquivo json
+        # vars - para organizar em dicionário no arquivo
+        with open ("Atividades/ComércioEletrônico/clientela.json", mode="w") as arquivo: 
             json.dump(cls.objetos, arquivo, default = vars)
 
     @classmethod
     def abrir(cls):
         cls.objetos=[]
-        try:
+        try: # Ele tentará ler/criar um arquivo.json no modo leitura
             with open ("Atividades/ComércioEletrônico/clientela.json", mode="r") as arquivo:
-                clientes_json = json.load(arquivo)
-                for obj in clientes_json:
-                    c = Cliente(obj["id"], obj["nome"],obj["email"],obj["fone"])
-                    cls.objetos.append(c)
+                objetos_json = json.load(arquivo) # Criando uma variável para carregar o arquivo
+                for obj in objetos_json: # Iterando os atributos da variável
+                    c = Cliente(obj["id"], obj["nome"],obj["email"],obj["fone"]) # Instanciando os atributos da classe Cliente à uma variável
+                    cls.objetos.append(c) # Adicionando a variável na lista dos objetos
         except FileNotFoundError:
             pass
 
     @classmethod
     def listar(cls):
-        cls.abrir()
-        return cls.objetos
+        cls.abrir() # Abrindo o dicionário
+        return cls.objetos # Retornando a lista dos objetos
 
     @classmethod
-    def listar_id(cls, id):
+    def listar_id(cls, id): # Método para retornar o id da lista
         for x in cls.objetos:
-            if x.id == id:
+            if x.id == id: # Se x for igual ao id, retorne x
                 return x
-        return None
+        return None 
 
     @classmethod
     def atualizar(cls, obj):
-        x = cls.listar_id(obj.id)
-        if x != None:
-            x.nome = obj.nome
+        x = cls.listar_id(obj.id) # Chamando a lista de id
+        if x != None: # Se for diferente de nada
+            x.nome = obj.nome # Receba os novos atributos
             x.email = obj.email
             x.fone = obj.fone
             cls.salvar()

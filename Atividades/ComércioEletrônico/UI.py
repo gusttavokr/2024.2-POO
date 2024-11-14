@@ -41,8 +41,8 @@ class UI: # Interface
         email = input("Digite o novo email: ")
         fone = input("Digite o novo fone: ")
         cliente = Cliente(id, nome, email, fone)
-        Clientes.atualizar(cliente)
+        Clientes.atualizar(cliente) # Usando o método atualizar na variável cliente
 
 
 
-UI.main()
+UI.main() # Executando a interface
