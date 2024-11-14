@@ -47,6 +47,12 @@ class Clientes:
 
     @classmethod
     def inserir(cls, obj):
+        cls.abrir()
+        id = 0
+        for x in cls.objetos:
+            if x.id > id:
+                id = x.id
+        obj.id = id +1
         cls.objetos.append(obj)
         cls.salvar()
 
@@ -66,3 +72,15 @@ class Clientes:
                     cls.objetos.append(c)
         except FileNotFoundError:
             pass
+
+    @classmethod
+    def listar(cls):
+        cls.abrir()
+        return cls.objetos
+
+    @classmethod
+    def listar_id(cls, id):
+        for x in cls.objetos:
+            if x.id == id:
+                return x
+        return None
