@@ -52,6 +52,11 @@ class UI: # Interface
         cliente = Cliente(id, nome, email, fone)
         Clientes.atualizar(cliente) # Usando o método atualizar na variável cliente
 
+    @staticmethod
+    def excluir_clientes():
+        UI.listar_clientes()
+        id = int(input("Informa o id do cliente a ser excluído: "))
+        Clientes.excluir(Clientes.listar_id(id))
 
 # FUNÇÕES PARA CATEGORIA
 

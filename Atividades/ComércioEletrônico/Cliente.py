@@ -97,3 +97,10 @@ class Clientes:
             x.setEmail(obj.getEmail())
             x.setFone(obj.getFone())
             cls.salvar()
+
+    @classmethod
+    def excluir(cls, obj):
+        x = cls.listar_id(obj.id)
+        if x != None:
+            cls.objetos.remove(x)
+            cls.salvar()
