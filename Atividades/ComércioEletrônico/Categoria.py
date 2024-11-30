@@ -31,7 +31,7 @@ class Categorias:
     def abrirCat(cls):
         cls.categorias = []
         try:
-            with open('Atividades/ComércioEletrônico/categorias.json', mode='r') as arquivo:
+            with open('Atividades/ComércioEletrônico/Json/categorias.json', mode='r') as arquivo:
                 categorias_json = json.load(arquivo)
                 for obj in categorias_json:
                     ct = Categoria(obj["_Categoria__id"], obj["_Categoria__descrição"])
@@ -41,7 +41,7 @@ class Categorias:
 
     @classmethod
     def salvarCat(cls):
-        with open('Atividades/ComércioEletrônico/categorias.json', mode='w') as arquivo:
+        with open('Atividades/ComércioEletrônico/Json/categorias.json', mode='w') as arquivo:
             json.dump(cls.categorias, arquivo, default=vars)
 
     @classmethod
@@ -72,4 +72,11 @@ class Categorias:
         x = cls.listar_id(obj.getId())
         if x != None:
             x.setDesc(obj.getDesc())
+            cls.salvarCat()
+
+    @classmethod
+    def excluir(cls, obj):
+        x = cls.listar_id(obj.getId())
+        if x != None:
+            cls.categorias.remove(x)
             cls.salvarCat()

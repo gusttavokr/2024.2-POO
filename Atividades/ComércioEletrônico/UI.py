@@ -1,14 +1,15 @@
 from Cliente import Cliente, Clientes # Importando as classes
 from Categoria import Categoria, Categorias
+from Produto import Produto, Produtos
 
 class UI: # Interface
     def menu(): #Menu 
-        print("\nBEM VINDO AO SEU COMÉRCIO ELETRÔNICO\nOPÇÕES:\n1- Novo cliente, 2- Listar Clientes, 3- Atualizar clientes\n4- Inserir categoria, 5- Listar categorias, 6- Atualizar categorias\n9- Encerrar")
+        print("\nBEM VINDO AO SEU COMÉRCIO ELETRÔNICO\nOPÇÕES:\n1- Novo cliente, 2- Listar clientes, 3- Atualizar clientes, 4- Excluir cliente\n5- Inserir categoria, 6- Listar categorias, 7- Atualizar categorias, 8- Excluir categorias\n9- Inserir produto, 10- Listar produtos, 11- Atualizar produtos, 12- Excluir produtos\n20- Finalizar")
         return int(input("Digite uma opção: "))
     
     def main(): #Principal
         op = 0
-        while op != 9:
+        while op != 20:
             op = UI.menu() # Indo pro menu
             if op == 1:
                 UI.inserir_cliente() # Se for 1, crie um cliente
@@ -17,11 +18,23 @@ class UI: # Interface
             if op == 3:
                 UI.atualizar_clientes() # Se for 3, atualize os clientes
             if op == 4:
-                UI.inserir_categoria()
+                UI.excluir_clientes()
             if op == 5:
-                UI.listar_categorias()
+                UI.inserir_categoria()
             if op == 6:
+                UI.listar_categorias()
+            if op == 7:
                 UI.atualizar_categorias()
+            if op == 8:
+                UI.excluir_categorias()
+            if op == 9:
+                UI.inserir_produto()
+            if op == 10:
+                UI.listar_produtos()
+            if op == 11:
+                UI.atualizar_produtos()
+            if op == 12:
+                UI.excluir_produtos()
 
 # FUNÇÕES PARA CLIENTES
 
@@ -77,11 +90,52 @@ class UI: # Interface
     
     @classmethod
     def atualizar_categorias(cls):
-        UI.listar_categorias
+        UI.listar_categorias()
         id = int(input("Digite o id da categoria a ser alterada: "))
         Descrição = input("Digite a nova descrição: ")
         categoria = Categoria(id, Descrição)
         Categorias.atualizar(categoria)
+    
+    @staticmethod
+    def excluir_categorias():
+        UI.listar_categorias()
+        id = int(input("Digite o id da categoria que deseja excluir: "))
+        Categorias.excluir(Categorias.listar_id(id))
+
+# FUNÇÕES PARA PRODUTOS
+
+    @classmethod
+    def inserir_produto(cls):
+        Descrição = input("Digite a descrição do produto: ")
+        Preço = int(input("Digite o preço do produto: "))
+        Estoque = int(input("Digite o estoque do produto: "))
+        prod = Produto(1, Descrição, Preço, Estoque)
+        Produtos.inserir(prod)
+    
+    @classmethod
+    def listar_produtos(cls):
+        produtos = Produtos.listarProd()
+        if len(produtos) == 0:
+            print("Nenhum produto cadastrado")
+        else:
+            for produto in produtos:
+                print(produto)
+
+    @classmethod
+    def atualizar_produtos(cls):
+        UI.listar_produtos()
+        id = int(input("Digite o id do produto que deseja atualizar: "))
+        descrição = input("Digite a nova descrição do produto: ")
+        preço = int(input("Digite o novo preço do produto: "))
+        estoque = int(input("Digite o estoque do novo produto: "))
+        prod = Produto(id, descrição, preço, estoque)
+        Produtos.atualizarProd(prod)
+
+    @staticmethod
+    def excluir_produtos():
+        UI.listar_produtos()
+        id = int(input("Digite o id a ser excluído: "))
+        Produtos.excluir(Produtos.listarId(id))
 
 
 UI.main() # Executando a interface

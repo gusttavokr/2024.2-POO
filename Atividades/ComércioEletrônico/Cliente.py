@@ -40,7 +40,7 @@ class Cliente:
             raise ValueError('Fone inválido')
 
     def __str__(self): # Formatação do terminal
-        return f'{self.getId()} - {self.getNome()} - {self.getEmail()} - {self.getFone()}'
+        return f'{self.getId()} - Nome: {self.getNome()} - Email: {self.getEmail()} - Telefone: {self.getFone()}'
     
 class Clientes:
     objetos = [] # Lista de Objetos, (no caso clientes), que serão usados
@@ -62,14 +62,14 @@ class Clientes:
         # open - cria e abre um arquivo.json
         # dump - para subir as informações pro arquivo json
         # vars - para organizar em dicionário no arquivo
-        with open ("Atividades/ComércioEletrônico/clientela.json", mode="w") as arquivo: 
+        with open ("Atividades/ComércioEletrônico/Json/clientela.json", mode="w") as arquivo: 
             json.dump(cls.objetos, arquivo, default = vars)
 
     @classmethod
     def abrir(cls):
         cls.objetos=[]
         try: # Ele tentará ler/criar um arquivo.json no modo leitura
-            with open ("Atividades/ComércioEletrônico/clientela.json", mode="r") as arquivo:
+            with open ("Atividades/ComércioEletrônico/Json/clientela.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo) # Criando uma variável para carregar o arquivo
                 for obj in objetos_json: # Iterando os atributos da variável
                     c = Cliente(obj["_Cliente__id"], obj["_Cliente__nome"],obj["_Cliente__email"],obj["_Cliente__fone"]) # Instanciando os atributos da classe Cliente à uma variável
@@ -100,7 +100,7 @@ class Clientes:
 
     @classmethod
     def excluir(cls, obj):
-        x = cls.listar_id(obj.id)
+        x = cls.listar_id(obj.getId())
         if x != None:
             cls.objetos.remove(x)
             cls.salvar()
