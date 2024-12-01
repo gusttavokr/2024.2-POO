@@ -1,10 +1,8 @@
-from Cliente import Cliente, Clientes # Importando as classes
-from Categoria import Categoria, Categorias
-from Produto import Produto, Produtos
+from View import View
 
 class UI: # Interface
     def menu(): #Menu 
-        print("\nBEM VINDO AO SEU COMÉRCIO ELETRÔNICO\nOPÇÕES:\n1- Novo cliente, 2- Listar clientes, 3- Atualizar clientes, 4- Excluir cliente\n5- Inserir categoria, 6- Listar categorias, 7- Atualizar categorias, 8- Excluir categorias\n9- Inserir produto, 10- Listar produtos, 11- Atualizar produtos, 12- Excluir produtos\n20- Finalizar")
+        print("\nBEM VINDO AO SEU COMÉRCIO ELETRÔNICO\nOPÇÕES:\n\n1- Novo cliente, 2- Listar clientes, 3- Atualizar clientes, 4- Excluir cliente\n\n5- Inserir categoria, 6- Listar categorias, 7- Atualizar categorias, 8- Excluir categorias\n\n9- Inserir produto, 10- Listar produtos, 11- Atualizar produtos, 12- Excluir produtos\n\n20- Finalizar")
         return int(input("Digite uma opção: "))
     
     def main(): #Principal
@@ -43,12 +41,11 @@ class UI: # Interface
         nome = input("Digite o nome: ")
         email = input("Digite o email: ")
         fone = input("Digite o fone: ")
-        cliente = Cliente(1, nome, email, fone) # Variável que recebe os atributos do novo cliente, instânciando na classe Cliente
-        Clientes.inserir(cliente) # Inserindo a variável na lista de clientes com o método Inserir da classe Cliente
+        View.inserir_cliente(nome, email, fone)
 
     @classmethod
     def listar_clientes(cls): # Listando os clientes
-        clientes = Clientes.listar() # Criando uma variável que chama o método da classe Clientes para listar
+        clientes = View.listar_clientes() # Criando uma variável que chama o método da classe Clientes para listar
         if len(clientes) == 0: # Se não houver clientes
             print("Nenhum cliente cadastrado")
         else:
@@ -62,26 +59,24 @@ class UI: # Interface
         nome = input("Digite o novo nome: ")
         email = input("Digite o novo email: ")
         fone = input("Digite o novo fone: ")
-        cliente = Cliente(id, nome, email, fone)
-        Clientes.atualizar(cliente) # Usando o método atualizar na variável cliente
+        View.atualizar_clientes(id, nome, email, fone)
 
     @staticmethod
     def excluir_clientes():
         UI.listar_clientes()
         id = int(input("Informa o id do cliente a ser excluído: "))
-        Clientes.excluir(Clientes.listar_id(id))
+        View.excluir_clientes(id)
 
 # FUNÇÕES PARA CATEGORIA
 
     @classmethod
     def inserir_categoria(cls):
         Descrição = input("Digite a descrição da categoria: ")
-        ct = Categoria(1, Descrição)
-        Categorias.inserir(ct)
+        View.inserir_categoria(Descrição)
     
     @classmethod
     def listar_categorias(cls):
-        categorias = Categorias.listar()
+        categorias = View.listar_categorias()
         if len(categorias) == 0:
             print("Nenhuma categoria cadastrada")
         else:
@@ -93,14 +88,13 @@ class UI: # Interface
         UI.listar_categorias()
         id = int(input("Digite o id da categoria a ser alterada: "))
         Descrição = input("Digite a nova descrição: ")
-        categoria = Categoria(id, Descrição)
-        Categorias.atualizar(categoria)
+        View.atualizar_categorias(id, Descrição)
     
     @staticmethod
     def excluir_categorias():
         UI.listar_categorias()
         id = int(input("Digite o id da categoria que deseja excluir: "))
-        Categorias.excluir(Categorias.listar_id(id))
+        View.excluir_categorias(id)
 
 # FUNÇÕES PARA PRODUTOS
 
@@ -109,12 +103,11 @@ class UI: # Interface
         Descrição = input("Digite a descrição do produto: ")
         Preço = int(input("Digite o preço do produto: "))
         Estoque = int(input("Digite o estoque do produto: "))
-        prod = Produto(1, Descrição, Preço, Estoque)
-        Produtos.inserir(prod)
+        View.inserir_produto(1, Descrição, Preço, Estoque)
     
     @classmethod
     def listar_produtos(cls):
-        produtos = Produtos.listarProd()
+        produtos = View.listar_produtos()
         if len(produtos) == 0:
             print("Nenhum produto cadastrado")
         else:
@@ -128,14 +121,13 @@ class UI: # Interface
         descrição = input("Digite a nova descrição do produto: ")
         preço = int(input("Digite o novo preço do produto: "))
         estoque = int(input("Digite o estoque do novo produto: "))
-        prod = Produto(id, descrição, preço, estoque)
-        Produtos.atualizarProd(prod)
+        View.atualizar_produtos(id, descrição, preço, estoque)
 
     @staticmethod
     def excluir_produtos():
         UI.listar_produtos()
         id = int(input("Digite o id a ser excluído: "))
-        Produtos.excluir(Produtos.listarId(id))
+        View.excluir_produtos(id)
 
 
 UI.main() # Executando a interface
