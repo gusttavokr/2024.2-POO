@@ -71,7 +71,9 @@ class Categorias:
     def atualizar(cls, obj):
         x = cls.listar_id(obj.getId())
         if x != None:
-            x.setDesc(obj.getDesc())
+            cls.categorias.remove(x)
+            cls.categorias.append(obj)
+            #x.setDesc(obj.getDesc())
             cls.salvarCat()
 
     @classmethod

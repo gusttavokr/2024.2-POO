@@ -93,9 +93,11 @@ class Clientes:
     def atualizar(cls, obj):
         x = cls.listar_id(obj.getId()) # Chamando a lista de id
         if x != None: # Se for diferente de nada
-            x.setNome(obj.getNome())
-            x.setEmail(obj.getEmail())
-            x.setFone(obj.getFone())
+            cls.objetos.remove(x)
+            cls.objetos.append(obj)
+            #x.setNome(obj.getNome())
+            #x.setEmail(obj.getEmail())
+            #x.setFone(obj.getFone())
             cls.salvar()
 
     @classmethod

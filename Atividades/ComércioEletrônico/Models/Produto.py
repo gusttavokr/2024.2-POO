@@ -58,6 +58,7 @@ class Produtos:
                 produtos_json=json.load(arquivo)
                 for obj in produtos_json:
                     p = Produto(obj["_Produto__id"], obj["_Produto__descrição"], obj["_Produto__preço"], obj["_Produto__estoque"])
+                    p.id_categoria = obj["id_categoria"]
                     cls.produtos.append(p)
         except FileNotFoundError:
             pass
@@ -94,9 +95,11 @@ class Produtos:
     def atualizarProd(cls, obj):
         x = cls.listarId(obj.getId())
         if x != None:
-            x.setDesc(obj.getDesc())
-            x.setPreço(obj.getPreço())
-            x.setEstoque(obj.getEstoque())
+            cls.produtos.remove(x)
+            cls.produtos.append(obj)
+            #x.setDesc(obj.getDesc())
+            #x.setPreço(obj.getPreço())
+            #x.setEstoque(obj.getEstoque())
             cls.salvarProd()
 
     @classmethod
