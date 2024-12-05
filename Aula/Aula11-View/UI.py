@@ -124,8 +124,9 @@ class UI: # Interface
             print("Nenhum produto cadastrado")
         else:
             for produto in produtos:
-                id_categoria = View.categoria_listarId(id_categoria)
-                print(f"{produto} + '-' + categoria.descrição")
+                id_categoria = produto.getId_Categoria()
+                categoria = View.listar_categoriasId()
+                print(f"{produto} - {categoria.descrição}")
 
     @classmethod
     def atualizar_produtos(cls):

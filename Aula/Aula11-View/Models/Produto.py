@@ -8,8 +8,8 @@ class Produto:
         self.__estoque = estoque
         self.__id_categoria = id_categoria
 
-        if id<=0:
-            raise ValueError("Id inválido")
+        #if id<=0:
+         #   raise ValueError("Id inválido")
         if descrição == "":
             raise ValueError("Descrição inválida")
         if preço <= 0:
@@ -44,9 +44,14 @@ class Produto:
         self.__estoque = estoque
         if estoque < 0:
             raise ValueError("Estoque inválido")
+
+    def getId_Categoria(self):
+        return self.__id_categoria
+    def setId_Categoria(self, id_categoria):
+        self.__id_categoria = id_categoria
         
     def __str__(self):
-        return f"{self.getId()} - Produto: {self.getDesc()} - R${self.getPreço()} - {self.getEstoque()} unidades"
+        return f"{self.getId()} - Produto: {self.getDesc()} - R${self.getPreço()} - {self.getEstoque():.2f} unidades"
     
 class Produtos:
     produtos = []
@@ -86,6 +91,7 @@ class Produtos:
     
     @classmethod
     def listarId(cls, id):
+        cls.abrirProd()
         for x in cls.produtos:
             if x.getId() == id:
                 return x
