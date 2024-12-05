@@ -35,7 +35,7 @@ class View:
         return Categorias.listar()
     
     @staticmethod
-    def listar_categoriasId():
+    def listar_categoriasId(id):
         return Categorias.listar_id(id)
     
     @staticmethod

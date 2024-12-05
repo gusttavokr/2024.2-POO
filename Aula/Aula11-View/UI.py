@@ -74,8 +74,7 @@ class UI: # Interface
     def excluir_clientes():
         UI.listar_clientes()
         id = int(input("Informa o id do cliente a ser excluído: "))
-        desc = input("Digite a nova descrição do produto:")
-        View.excluir_clientes(id, desc)
+        View.excluir_clientes(id)
 
 # FUNÇÕES PARA CATEGORIA
 
@@ -125,7 +124,7 @@ class UI: # Interface
         else:
             for produto in produtos:
                 id_categoria = produto.getId_Categoria()
-                categoria = View.listar_categoriasId()
+                categoria = View.listar_categoriasId(id_categoria)
                 print(f"{produto} - {categoria.descrição}")
 
     @classmethod
