@@ -1,11 +1,12 @@
 import json
 
 class Cliente:
-    def __init__(self, id, nome, email, fone): # Método construtor
+    def __init__(self, id, nome, email, fone, senha): # Método construtor
         self.__id = id
         self.__nome = nome
         self.__email = email
         self.__fone = fone
+        self.__senha = senha #fazer get e set
 
     def getId(self):
         return self.__id
@@ -38,6 +39,14 @@ class Cliente:
             self.__fone = fone
         else:
             raise ValueError('Fone inválido')
+
+    def getSenha(self):
+        return self.__senha
+    def setSenha(self, senha):
+        if len(senha) > 0:
+            self.__senha = senha
+        else:
+            raise ValueError('Senha inválida')
 
     def __str__(self): # Formatação do terminal
         return f'{self.getId()} - Nome: {self.getNome()} - Email: {self.getEmail()} - Telefone: {self.getFone()}'
@@ -72,7 +81,7 @@ class Clientes:
             with open ("Atividades/ComércioEletrônico/Json/clientela.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo) # Criando uma variável para carregar o arquivo
                 for obj in objetos_json: # Iterando os atributos da variável
-                    c = Cliente(obj["_Cliente__id"], obj["_Cliente__nome"],obj["_Cliente__email"],obj["_Cliente__fone"]) # Instanciando os atributos da classe Cliente à uma variável
+                    c = Cliente(obj["_Cliente__id"], obj["_Cliente__nome"],obj["_Cliente__email"],obj["_Cliente__fone"], obj["_Cliente__senha"]) # Instanciando os atributos da classe Cliente à uma variável
                     cls.objetos.append(c) # Adicionando a variável na lista dos objetos
         except FileNotFoundError:
             pass

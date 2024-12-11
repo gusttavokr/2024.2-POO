@@ -5,8 +5,23 @@ from Models.Produto import Produto, Produtos
 class View:
 
     @staticmethod
-    def inserir_cliente(nome, email, fone):
-        cliente = Cliente(1, nome, email, fone) 
+    def cliente_admin():
+        for c in Clientes.listar():
+            if c.getEmail() == "admin":
+                return None
+        View.inserir_cliente("admin", "admin", "0000", "1234")
+
+    @staticmethod
+    def cliente_autenticar():
+        for c in Clientes.listar():
+            if c.getEmail() == "email" and c.getSenha() == "senha":
+                return { "id" : c.id, "nome" : c.nome }
+        return None
+
+
+    @staticmethod
+    def inserir_cliente(nome, email, fone, senha):
+        cliente = Cliente(1, nome, email, fone, senha) 
         Clientes.inserir(cliente)
 
     @staticmethod
@@ -14,13 +29,14 @@ class View:
         return Clientes.listar()
     
     @staticmethod
-    def atualizar_clientes(id, nome, email, fone):
-        cliente = Cliente(id, nome, email, fone)
+    def atualizar_clientes(id, nome, email, fone, senha):
+        cliente = Cliente(id, nome, email, fone, senha)
         Clientes.atualizar(cliente) # Usando o método atualizar na variável cliente
 
     @staticmethod
     def excluir_clientes(id):
-        Clientes.excluir(Clientes.listar_id(id))
+        c = Cliente("", "", "", "", "")
+        Clientes.excluir(c)
 
     
 
@@ -46,8 +62,8 @@ class View:
     
 
     @staticmethod
-    def inserir_produto(id, Descrição, Preço, Estoque):
-        prod = Produto(id, Descrição, Preço, Estoque)
+    def inserir_produto(id, Descrição, Preço, Estoque, id_categoria):
+        prod = Produto(id, Descrição, Preço, Estoque, id_categoria)
         Produtos.inserir(prod)
 
     @staticmethod
@@ -55,10 +71,15 @@ class View:
        return Produtos.listarProd()
     
     @staticmethod
-    def atualizar_produtos(id, descrição, preço, estoque):
-        prod = Produto(id, descrição, preço, estoque)
+    def atualizar_produtos(id, descrição, preço, estoque, id_categoria):
+        prod = Produto(id, descrição, preço, estoque, id_categoria)
         Produtos.atualizarProd(prod)
 
     @staticmethod
     def excluir_produtos(id):
         Produtos.excluir(Produtos.listarId(id))
+
+    @staticmethod
+    def produto_reajustar(percentual):
+        for obj in View.listar_produtos():
+            View.atualizar_produtos(obj.getId(), obj.getDesc, obj.getPreço() * (1 + percentual), obj.getEstoque(), obj.getId_Categoria())

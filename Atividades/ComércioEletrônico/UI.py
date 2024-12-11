@@ -1,11 +1,31 @@
 from View import View
 
 class UI: # Interface
+        
+    # Dados do usuário logado
+    cliente_id = 0
+    cliente_nome = ""
+    @staticmethod
     def menu(): #Menu 
-        print("\nBEM VINDO AO SEU COMÉRCIO ELETRÔNICO\nOPÇÕES:\n\n1- Novo cliente, 2- Listar clientes, 3- Atualizar clientes, 4- Excluir cliente\n\n5- Inserir categoria, 6- Listar categorias, 7- Atualizar categorias, 8- Excluir categorias\n\n9- Inserir produto, 10- Listar produtos, 11- Atualizar produtos, 12- Excluir produtos\n\n20- Finalizar")
-        return int(input("Digite uma opção: "))
+        print("BEM VINDO AO COMÉRCIO ELETRÔNICO")
+        print("Digite uma das opções:\n")
+        print("Cadastro de Clientes:")
+        print("1- Novo cliente, 2- Listar clientes, 3- Atualizar cliente, 4- Excluir Cliente")
+        print("-----------------------------------------------------------------")
+        print("Cadastro de Categorias:")
+        print("5- Nova categoria, 6- Listar categorias, 7- Atualizar categoria, 8- Excluir categoria")
+        print("-----------------------------------------------------------------")
+        print("Cadastro de Produtos:")
+        print("9- Novo produto, 10- Listar produtos, 11- Atualizar produto, 12- Excluir produto, 13- Produto reajustar")
+        print("-----------------------------------------------------------------")
+        print("Menu do visitante:")
+        print("14- Criar conta, 15- Entrar no sistema")
+        print("-----------------------------------------------------------------")
+        return int(input("Digite uma opção ou 20 para sair: "))
     
+    @staticmethod
     def main(): #Principal
+        View.cliente_admin()
         op = 0
         while op != 20:
             op = UI.menu() # Indo pro menu
@@ -17,6 +37,7 @@ class UI: # Interface
                 UI.atualizar_clientes() # Se for 3, atualize os clientes
             if op == 4:
                 UI.excluir_clientes()
+
             if op == 5:
                 UI.inserir_categoria()
             if op == 6:
@@ -25,6 +46,7 @@ class UI: # Interface
                 UI.atualizar_categorias()
             if op == 8:
                 UI.excluir_categorias()
+
             if op == 9:
                 UI.inserir_produto()
             if op == 10:
@@ -33,6 +55,30 @@ class UI: # Interface
                 UI.atualizar_produtos()
             if op == 12:
                 UI.excluir_produtos()
+            if op == 13:
+                UI.produto_reajustar()
+
+            if op == 14:
+                UI.visitante_abrir_conta()
+            if op== 15:
+                UI.cliente_entrar_sistema()
+
+
+    @classmethod
+    def visitante_abrir_conta(cls):
+        cls.inserir_cliente()
+    @classmethod
+    def cliente_entrar_sistema(cls):
+        email = input("Informe o email: ")
+        senha = input("Informe a senha: ")
+        obj = View.cliente_autenticar(email, senha)
+        if obj == None:
+            print("Email ou senha inválidos")
+        else:
+            cls.cliente_id = obj["id"]
+            cls.nome = obj["nome"]
+            print(print("Bem-vindo(a),",cls.cliente_nome))
+
 
 # FUNÇÕES PARA CLIENTES
 
@@ -41,7 +87,8 @@ class UI: # Interface
         nome = input("Digite o nome: ")
         email = input("Digite o email: ")
         fone = input("Digite o fone: ")
-        View.inserir_cliente(nome, email, fone)
+        senha = input("Digite a senha: ")
+        View.inserir_cliente(nome, email, fone, senha)
 
     @classmethod
     def listar_clientes(cls): # Listando os clientes
@@ -103,7 +150,9 @@ class UI: # Interface
         Descrição = input("Digite a descrição do produto: ")
         Preço = int(input("Digite o preço do produto: "))
         Estoque = int(input("Digite o estoque do produto: "))
-        View.inserir_produto(1, Descrição, Preço, Estoque)
+        UI.listar_categorias()
+        id_categoria = int(input("Digite o id da categoria: "))
+        View.inserir_produto(1, Descrição, Preço, Estoque, id_categoria)
     
     @classmethod
     def listar_produtos(cls):
@@ -128,6 +177,11 @@ class UI: # Interface
         UI.listar_produtos()
         id = int(input("Digite o id a ser excluído: "))
         View.excluir_produtos(id)
+
+    @classmethod
+    def produto_reajustar(cls):
+        reajuste = float(input("Informe o percentual de reajuste em %: "))
+        View.produto_reajustar(reajuste/100)
 
 
 UI.main() # Executando a interface

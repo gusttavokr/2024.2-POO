@@ -1,11 +1,12 @@
 import json
 
 class Produto:
-    def __init__(self, id, descrição, preço, estoque):
+    def __init__(self, id, descrição, preço, estoque, id_categoria):
         self.__id = id
         self.__descrição = descrição
         self.__preço = preço
         self.__estoque = estoque
+        self.__id_categoria = id_categoria
 
         if id<=0:
             raise ValueError("Id inválido")
@@ -43,6 +44,11 @@ class Produto:
         self.__estoque = estoque
         if estoque < 0:
             raise ValueError("Estoque inválido")
+
+    def getId_Categoria(self):
+        return self.__id_categoria
+    def setId_Categoria(self, id_categoria):
+        self.__id_categoria = id_categoria
         
     def __str__(self):
         return f"{self.getId()} - Produto: {self.getDesc()} - R${self.getPreço()} - {self.getEstoque()} unidades"
@@ -57,8 +63,8 @@ class Produtos:
             with open("Atividades/ComércioEletrônico/Json/produtos.json", mode="r") as arquivo:
                 produtos_json=json.load(arquivo)
                 for obj in produtos_json:
-                    p = Produto(obj["_Produto__id"], obj["_Produto__descrição"], obj["_Produto__preço"], obj["_Produto__estoque"])
-                    p.id_categoria = obj["id_categoria"]
+                    p = Produto(obj["_Produto__id"], obj["_Produto__descrição"], obj["_Produto__preço"], obj["_Produto__estoque"], obj["_Produto__id_categoria"])
+                    #p.id_categoria = obj["__id_categoria"]
                     cls.produtos.append(p)
         except FileNotFoundError:
             pass
