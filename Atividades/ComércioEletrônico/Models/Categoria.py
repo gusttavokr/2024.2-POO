@@ -38,6 +38,8 @@ class Categorias:
                     cls.categorias.append(ct)
         except FileNotFoundError:
             pass
+        except json.JSONDecodeError:
+            pass
 
     @classmethod
     def salvarCat(cls):

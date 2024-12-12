@@ -5,6 +5,7 @@ class UI: # Interface
     # Dados do usuário logado
     cliente_id = 0
     cliente_nome = ""
+
     @staticmethod
     def menu(): #Menu 
         print("BEM VINDO AO COMÉRCIO ELETRÔNICO")
@@ -18,8 +19,10 @@ class UI: # Interface
         print("Cadastro de Produtos:")
         print("9- Novo produto, 10- Listar produtos, 11- Atualizar produto, 12- Excluir produto, 13- Produto reajustar")
         print("-----------------------------------------------------------------")
+        print("Cadastro de Vendas:")
+        print("14- Inserir no carrinho")
         print("Menu do visitante:")
-        print("14- Criar conta, 15- Entrar no sistema")
+        print("x- Criar conta, x- Entrar no sistema")
         print("-----------------------------------------------------------------")
         return int(input("Digite uma opção ou 20 para sair: "))
     
@@ -58,9 +61,14 @@ class UI: # Interface
             if op == 13:
                 UI.produto_reajustar()
 
+
             if op == 14:
+                UI.inserir_carrinho()
+
+
+            if op == "x":
                 UI.visitante_abrir_conta()
-            if op== 15:
+            if op== "x":
                 UI.cliente_entrar_sistema()
 
 
@@ -186,5 +194,14 @@ class UI: # Interface
         reajuste = float(input("Informe o percentual de reajuste em %: "))
         View.produto_reajustar(reajuste/100)
 
+
+
+
+    @classmethod
+    def inserir_carrinho(cls):
+        UI.listar_produtos()
+        produto = int(input("Informe o id do produto"))
+        cliente = ""
+        p = Venda(produto, )
 
 UI.main() # Executando a interface

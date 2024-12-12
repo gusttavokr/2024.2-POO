@@ -1,6 +1,7 @@
 from Models.Cliente import Cliente, Clientes
 from Models.Categoria import Categoria, Categorias
 from Models.Produto import Produto, Produtos
+from Models.Venda import Venda, Vendas
 
 class View:
 
@@ -83,3 +84,8 @@ class View:
     def produto_reajustar(percentual):
         for obj in View.listar_produtos():
             View.atualizar_produtos(obj.getId(), obj.getDesc(), obj.getPreço() * (1 + percentual), obj.getEstoque(), obj.getId_Categoria())
+
+
+    @staticmethod
+    def inserir_carrinho(id, data, total, id_cliente):
+        c = Venda(id, data, True, total, id_cliente)

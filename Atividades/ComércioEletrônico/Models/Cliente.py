@@ -85,6 +85,8 @@ class Clientes:
                     cls.objetos.append(c) # Adicionando a variável na lista dos objetos
         except FileNotFoundError:
             pass
+        except json.JSONDecodeError:
+            pass
 
     @classmethod
     def listar(cls):
