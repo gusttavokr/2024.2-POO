@@ -35,7 +35,7 @@ class View:
 
     @staticmethod
     def excluir_clientes(id):
-        c = Cliente("", "", "", "", "")
+        c = Cliente(id, "", "", "", "")
         Clientes.excluir(c)
 
     
@@ -82,4 +82,4 @@ class View:
     @staticmethod
     def produto_reajustar(percentual):
         for obj in View.listar_produtos():
-            View.atualizar_produtos(obj.getId(), obj.getDesc, obj.getPreço() * (1 + percentual), obj.getEstoque(), obj.getId_Categoria())
+            View.atualizar_produtos(obj.getId(), obj.getDesc(), obj.getPreço() * (1 + percentual), obj.getEstoque(), obj.getId_Categoria())

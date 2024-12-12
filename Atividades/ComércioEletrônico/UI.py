@@ -106,7 +106,8 @@ class UI: # Interface
         nome = input("Digite o novo nome: ")
         email = input("Digite o novo email: ")
         fone = input("Digite o novo fone: ")
-        View.atualizar_clientes(id, nome, email, fone)
+        senha = input("Digite o nova senha: ")
+        View.atualizar_clientes(id, nome, email, fone, senha)
 
     @staticmethod
     def excluir_clientes():
@@ -148,7 +149,7 @@ class UI: # Interface
     @classmethod
     def inserir_produto(cls):
         Descrição = input("Digite a descrição do produto: ")
-        Preço = int(input("Digite o preço do produto: "))
+        Preço = float(input("Digite o preço do produto: "))
         Estoque = int(input("Digite o estoque do produto: "))
         UI.listar_categorias()
         id_categoria = int(input("Digite o id da categoria: "))
@@ -168,9 +169,11 @@ class UI: # Interface
         UI.listar_produtos()
         id = int(input("Digite o id do produto que deseja atualizar: "))
         descrição = input("Digite a nova descrição do produto: ")
-        preço = int(input("Digite o novo preço do produto: "))
+        preço = float(input("Digite o novo preço do produto: "))
         estoque = int(input("Digite o estoque do novo produto: "))
-        View.atualizar_produtos(id, descrição, preço, estoque)
+        UI.listar_categorias()
+        id_categoria = int(input("Digite o id da categoria do produto: "))
+        View.atualizar_produtos(id, descrição, preço, estoque, id_categoria)
 
     @staticmethod
     def excluir_produtos():
