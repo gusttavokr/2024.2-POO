@@ -51,7 +51,7 @@ class Produto:
         self.__id_categoria = id_categoria
         
     def __str__(self):
-        return f"{self.getId()} - Produto: {self.getDesc()} - R${self.getPreço()} - {self.getEstoque()} unidades"
+        return f"{self.getId()} - Produto: {self.getDesc()} - R${self.getPreço():.2f} - {self.getEstoque()} unidades"
     
 class Produtos:
     produtos = []

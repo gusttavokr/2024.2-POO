@@ -12,10 +12,10 @@ class View:
         View.inserir_cliente("admin", "admin", "0000", "1234")
 
     @staticmethod
-    def cliente_autenticar():
+    def cliente_autenticar(email, senha):
         for c in Clientes.listar():
-            if c.getEmail() == "email" and c.getSenha() == "senha":
-                return { "id" : c.id, "nome" : c.nome }
+            if c.getEmail() == email and c.getSenha() == senha:
+                return { "id" : c.getId(), "nome" : c.getNome() }
         return None
 
 
