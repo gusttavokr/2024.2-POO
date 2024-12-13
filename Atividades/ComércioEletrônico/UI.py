@@ -7,8 +7,18 @@ class UI: # Interface
     cliente_nome = ""
 
     @staticmethod
-    def menu(): #Menu 
-        print("BEM VINDO AO COMÉRCIO ELETRÔNICO")
+    def menu_visitante(): #Menu 
+        print("1- Criar conta, 2- Entrar no sistema")
+        print("-----------------------------------------------------------------")
+        op = int(input("Digite uma opção: "))
+    
+        if op == 1:
+            UI.visitante_abrir_conta()
+        if op== 2:
+            UI.cliente_entrar_sistema()
+
+    @staticmethod
+    def menu_admin():
         print("Digite uma das opções:\n")
         print("Cadastro de Clientes:")
         print("1- Novo cliente, 2- Listar clientes, 3- Atualizar cliente, 4- Excluir Cliente")
@@ -19,58 +29,76 @@ class UI: # Interface
         print("Cadastro de Produtos:")
         print("9- Novo produto, 10- Listar produtos, 11- Atualizar produto, 12- Excluir produto, 13- Produto reajustar")
         print("-----------------------------------------------------------------")
-        print("Cadastro de Vendas:")
-        print("14- Inserir no carrinho")
-        print("Menu do visitante:")
-        print("x- Criar conta, x- Entrar no sistema")
-        print("-----------------------------------------------------------------")
-        return int(input("Digite uma opção ou 20 para sair: "))
+        print("0- Sair, 99 - Fim")
+
+        op = int(input("Digite uma operação ou 99 para sair: "))
+
+        if op == 0:
+            UI.sair_do_sistema()
+
+        if op == 1:
+            UI.inserir_cliente() # Se for 1, crie um cliente
+        if op == 2:
+            UI.listar_clientes() # Se for 2, liste os clientes
+        if op == 3:
+            UI.atualizar_clientes() # Se for 3, atualize os clientes
+        if op == 4:
+            UI.excluir_clientes()
+
+        if op == 5:
+            UI.inserir_categoria()
+        if op == 6:
+            UI.listar_categorias()
+        if op == 7:
+            UI.atualizar_categorias()
+        if op == 8:
+            UI.excluir_categorias()
+
+        if op == 9:
+            UI.inserir_produto()
+        if op == 10:
+            UI.listar_produtos()
+        if op == 11:
+            UI.atualizar_produtos()
+        if op == 12:
+            UI.excluir_produtos()
+        if op == 13:
+            UI.produto_reajustar()
+
+        return op
     
-    @staticmethod
-    def main(): #Principal
+    @classmethod
+    def main(cls): #Principal
         View.cliente_admin()
         op = 0
-        while op != 20:
-            op = UI.menu() # Indo pro menu
-            if op == 1:
-                UI.inserir_cliente() # Se for 1, crie um cliente
-            if op == 2:
-                UI.listar_clientes() # Se for 2, liste os clientes
-            if op == 3:
-                UI.atualizar_clientes() # Se for 3, atualize os clientes
-            if op == 4:
-                UI.excluir_clientes()
 
-            if op == 5:
-                UI.inserir_categoria()
-            if op == 6:
-                UI.listar_categorias()
-            if op == 7:
-                UI.atualizar_categorias()
-            if op == 8:
-                UI.excluir_categorias()
+        while op != 99:
+            if cls.cliente_id == 0:
+                op = UI.menu_visitante()
+            else:
+                admin = cls.cliente_nome == "admin"
+                print("Bem-vindo(a), " + cls.cliente_nome)
+                if admin:
+                    op = UI.menu_admin()
+                else: 
+                    op = UI.menu_cliente()
 
-            if op == 9:
-                UI.inserir_produto()
-            if op == 10:
-                UI.listar_produtos()
-            if op == 11:
-                UI.atualizar_produtos()
-            if op == 12:
-                UI.excluir_produtos()
-            if op == 13:
-                UI.produto_reajustar()
+    def menu_cliente():
+        print("1 - Listar Produtos, 2 - Adicionar Produto no Carrinho, 3 - Fechar Pedido, 4 - Ver Meus Pedidos")
+        print("0 - Sair, 99 - Fim")
+        op = int(input("\nInforme uma opção: "))
+        if op == 0: UI.sair_do_sistema()
 
+        if op == 1: UI.cliente_listar_produto()
+        if op == 2: UI.cliente_adicionar_produto()
+        if op == 3: UI.cliente_fechar_pedido()
+        if op == 4: UI.cliente_meus_pedidos()
+        return op
 
-            if op == 14:
-                UI.inserir_carrinho()
-
-
-            if op == "x":
-                UI.visitante_abrir_conta()
-            if op== "x":
-                UI.cliente_entrar_sistema()
-
+    @classmethod
+    def sair_do_sistema(cls):
+        cls.cliente_id = 0
+        cls.cliente_nome = ""
 
     @classmethod
     def visitante_abrir_conta(cls):
@@ -85,8 +113,6 @@ class UI: # Interface
         else:
             cls.cliente_id = obj["id"]
             cls.nome = obj["nome"]
-            print(print("Bem-vindo(a),",cls.cliente_nome))
-
 
 # FUNÇÕES PARA CLIENTES
 
@@ -197,11 +223,11 @@ class UI: # Interface
 
 
 
-    @classmethod
-    def inserir_carrinho(cls):
-        UI.listar_produtos()
-        produto = int(input("Informe o id do produto"))
-        cliente = ""
-        p = Venda(produto, )
+    # @classmethod
+    # def inserir_carrinho(cls):
+    #     UI.listar_produtos()
+    #     produto = int(input("Informe o id do produto"))
+    #     cliente = ""
+    #     p = Venda(produto, )
 
 UI.main() # Executando a interface
