@@ -16,6 +16,6 @@ class AbrirConta:
 
         if st.button("Cadastrar"):
             View.inserir_cliente(nome, email, fone, senha)
-            st.sucess("Cliente inserido com sucesso")
+            st.success("Cliente inserido com sucesso")
             time.sleep(2)
             st.rerun()

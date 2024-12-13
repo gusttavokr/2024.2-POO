@@ -6,9 +6,11 @@ import time
 class ManterCliente:
     def main():
         st.header("Cadastro de clientes")
-        1, 2, 3, 4 = st.tabs(["Inserir"], ["Listar"], ["Atualizar"], ["Excluir"])
-        with 1 : ManterCliente.inserir()
-        with 2 : ManterCliente.listar()
+        t1, t2, t3, t4 = st.tabs(["Inserir", "Listar", "Atualizar", "Excluir"])
+        with t1 : ManterCliente.inserir()
+        with t2 : ManterCliente.listar()
+        with t3 : ManterCliente.atualizar()
+        with t4 : ManterCliente.excluir()
 
     def inserir():
         nome = st.text_input("Informe o nome do cliente:")
@@ -18,13 +20,12 @@ class ManterCliente:
 
         if st.button("Enviar"):
             View.inserir_cliente(nome, email, fone, senha)
-            st.sucess("Cliente inserido com sucesso")
+            st.success("Cliente inserido com sucesso")
             time.sleep(2)
             st.rerun()
 
     def listar():
         clientes = View.listar_clientes()
-
         if len(clientes) == 0:
             st.write("Nenhum cliente cadastrado")
         else:
@@ -40,14 +41,14 @@ class ManterCliente:
             st.write("Nenhum cliente cadastrado")
         else:
             op = st.selectbox("Atualização de cliente", clientes)
-            nome = st.text_input("Informe o novo nome:", op.nome)
-            email = st.text_input("Informe o novo email:", op.email)
-            fone = st.text_input("Informe o novo telefone:", op.fone)
-            senha = st.text_input("Informe o novo senha:", op.senha)
+            nome = st.text_input("Informe o novo nome:", op.getNome())
+            email = st.text_input("Informe o novo email:", op.getEmail())
+            fone = st.text_input("Informe o novo telefone:", op.getFone())
+            senha = st.text_input("Informe o novo senha:", op.getSenha())
         
         if st.button("Atualizar"):
-            View.atualizar_clientes(op.id, nome, email, fone, senha)
-            st.sucess("Cliente atualizado com sucesso!")
+            View.atualizar_clientes(op.getId(), nome, email, fone, senha)
+            st.success("Cliente atualizado com sucesso!")
             time.sleep(2)
             st.rerun()
 
@@ -58,7 +59,7 @@ class ManterCliente:
         else:
             op = st.selectbox("Excluir cliente", clientes)
             if st.button("Excluir"):
-                View.excluir_clientes(op.id)
-                st.sucess("Cliente excluído com sucesso")
+                View.excluir_clientes(op.getId())
+                st.success("Cliente excluído com sucesso")
                 time.sleep(2)
                 st.rerun()

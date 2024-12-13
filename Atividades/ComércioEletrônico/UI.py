@@ -8,9 +8,9 @@ class UI: # Interface
 
     @staticmethod
     def menu_visitante(): #Menu 
-        print("1- Criar conta, 2- Entrar no sistema")
+        print("1- Criar conta, 2- Entrar no sistema, 99- Fim")
         print("-----------------------------------------------------------------")
-        op = int(input("Digite uma opção: "))
+        op = int(input("\nDigite uma opção: "))
     
         if op == 1:
             UI.visitante_abrir_conta()
@@ -19,7 +19,6 @@ class UI: # Interface
 
     @staticmethod
     def menu_admin():
-        print("Digite uma das opções:\n")
         print("Cadastro de Clientes:")
         print("1- Novo cliente, 2- Listar clientes, 3- Atualizar cliente, 4- Excluir Cliente")
         print("-----------------------------------------------------------------")
@@ -31,7 +30,7 @@ class UI: # Interface
         print("-----------------------------------------------------------------")
         print("0- Sair, 99 - Fim")
 
-        op = int(input("Digite uma operação ou 99 para sair: "))
+        op = int(input("Digite uma operação: "))
 
         if op == 0:
             UI.sair_do_sistema()
@@ -67,6 +66,18 @@ class UI: # Interface
 
         return op
     
+    def menu_cliente():
+        print("1 - Listar Produtos, 2- Adicionar Produto no Carrinho, 3- Fechar Pedido, 4- Ver Meus Pedidos")
+        print("0 - Sair, 99 - Fim")
+        op = int(input("\nInforme uma opção: "))
+        if op == 0: UI.sair_do_sistema()
+
+        if op == 1: UI.cliente_listar_produto()
+        if op == 2: UI.cliente_adicionar_produto()
+        if op == 3: UI.cliente_fechar_pedido()
+        if op == 4: UI.cliente_meus_pedidos()
+        return op
+    
     @classmethod
     def main(cls): #Principal
         View.cliente_admin()
@@ -83,17 +94,6 @@ class UI: # Interface
                 else: 
                     op = UI.menu_cliente()
 
-    def menu_cliente():
-        print("1 - Listar Produtos, 2 - Adicionar Produto no Carrinho, 3 - Fechar Pedido, 4 - Ver Meus Pedidos")
-        print("0 - Sair, 99 - Fim")
-        op = int(input("\nInforme uma opção: "))
-        if op == 0: UI.sair_do_sistema()
-
-        if op == 1: UI.cliente_listar_produto()
-        if op == 2: UI.cliente_adicionar_produto()
-        if op == 3: UI.cliente_fechar_pedido()
-        if op == 4: UI.cliente_meus_pedidos()
-        return op
 
     @classmethod
     def sair_do_sistema(cls):
@@ -112,7 +112,7 @@ class UI: # Interface
             print("Email ou senha inválidos")
         else:
             cls.cliente_id = obj["id"]
-            cls.nome = obj["nome"]
+            cls.cliente_nome = obj["nome"]
 
 # FUNÇÕES PARA CLIENTES
 
