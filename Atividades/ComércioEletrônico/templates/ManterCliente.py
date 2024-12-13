@@ -5,7 +5,7 @@ import time
 
 class ManterCliente:
     def main():
-        st.header("Cadastro de clientes")
+        st.header("Cadastro de Clientes")
         t1, t2, t3, t4 = st.tabs(["Inserir", "Listar", "Atualizar", "Excluir"])
         with t1 : ManterCliente.inserir()
         with t2 : ManterCliente.listar()
@@ -18,7 +18,7 @@ class ManterCliente:
         fone = st.text_input("Informe o telefone do usuário:")
         senha = st.text_input("Informe a senha do usuário:", type="password")
 
-        if st.button("Enviar"):
+        if st.button("Cadastrar"):
             View.inserir_cliente(nome, email, fone, senha)
             st.success("Cliente inserido com sucesso")
             time.sleep(2)

@@ -1,6 +1,8 @@
 import streamlit as st
 from templates.LoginUI import LoginUI
 from templates.ManterCliente import ManterCliente
+from templates.ManterCategoria import ManterCategoria
+#from templates.ManterProduto import ManterProduto
 from templates.AbrirConta import AbrirConta
 from View import View
 
@@ -13,9 +15,13 @@ class IndexUI:
             LoginUI.main()
 
     def menu_admin():
-        op = st.selectbox("Menu", ["Cadastro de clientes"])
-        if op == "Cadastro de clientes":
+        op = st.selectbox("Menu", ["Cadastro de Clientes", "Cadastro de Categorias", "Cadastro de Produtos"])
+        if op == "Cadastro de Clientes":
             ManterCliente.main()
+        if op == "Cadastro de Categorias":
+            ManterCategoria.main()
+        # if op == "Cadastro de Produtos":
+        #     ManterProduto.main()
 
     def menu_cliente():
         op = st.selectbox("Menu", ["Inserir produtos ao carrinho", "Listar produtos", "Fechar pedido", "Ver meus pedidos"])

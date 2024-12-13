@@ -7,7 +7,6 @@ class AbrirConta:
         st.header("Abrir conta no sistema")
         AbrirConta.inserir()
 
-
     def inserir():
         nome = st.text_input("Informe o nome do cliente:")
         email = st.text_input("Informe o email do cliente:")

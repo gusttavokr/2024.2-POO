@@ -1,2 +1,6 @@
-- [ ] Esta é uma CheckBox não marcada
-- [x] Esta é uma CheckBox marcada
+### Coisas que faltam fazer:
+- [ ] Admin - Produto
+- [x] Admin - Categoria
+- [ ] Admin - Venda
+- [ ] Admin - VendaItem
+- [ ] Cliente - Carrinho 
