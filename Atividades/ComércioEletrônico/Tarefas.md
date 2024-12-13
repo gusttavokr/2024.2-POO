@@ -1,0 +1,2 @@
+- [ ] Esta é uma CheckBox não marcada
+- [x] Esta é uma CheckBox marcada
