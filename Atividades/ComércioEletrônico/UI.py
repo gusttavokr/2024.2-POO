@@ -9,13 +9,15 @@ class UI: # Interface
     @staticmethod
     def menu_visitante(): #Menu 
         print("1- Criar conta, 2- Entrar no sistema, 99- Fim")
-        print("-----------------------------------------------------------------")
+        #print("-----------------------------------------------------------------")
         op = int(input("\nDigite uma opção: "))
     
         if op == 1:
             UI.visitante_abrir_conta()
         if op== 2:
             UI.cliente_entrar_sistema()
+        return op
+            
 
     @staticmethod
     def menu_admin():
@@ -88,7 +90,7 @@ class UI: # Interface
                 op = UI.menu_visitante()
             else:
                 admin = cls.cliente_nome == "admin"
-                print("Bem-vindo(a), " + cls.cliente_nome)
+                print("\nBem-vindo(a), " + cls.cliente_nome)
                 if admin:
                     op = UI.menu_admin()
                 else: 

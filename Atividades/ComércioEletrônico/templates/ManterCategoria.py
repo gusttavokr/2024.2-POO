@@ -30,8 +30,8 @@ class ManterCategoria:
             dic = []
             for obj in categorias:
                 dic.append(obj.__dict__)
-                df = p.DataFrame(dic)
-                st.dataframe(df)
+            df = p.DataFrame(dic)
+            st.dataframe(df)
 
     def atualizar():
         categorias = View.listar_categorias()

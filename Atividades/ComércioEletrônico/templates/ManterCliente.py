@@ -32,8 +32,8 @@ class ManterCliente:
             dic = []
             for obj in clientes:
                 dic.append(obj.__dict__)
-                df = p.DataFrame(dic)
-                st.dataframe(df)
+            df = p.DataFrame(dic)
+            st.dataframe(df)
 
     def atualizar():
         clientes = View.listar_clientes()
