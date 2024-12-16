@@ -122,6 +122,7 @@ class UI: # Interface
     def inserir_cliente(): # Criando um cliente
         nome = input("Digite o nome: ")
         email = input("Digite o email: ")
+        View.validar_email(email)
         fone = input("Digite o fone: ")
         senha = input("Digite a senha: ")
         View.inserir_cliente(nome, email, fone, senha)
@@ -222,6 +223,7 @@ class UI: # Interface
         reajuste = float(input("Informe o percentual de reajuste em %: "))
         View.produto_reajustar(reajuste/100)
 
+    
 
 
 

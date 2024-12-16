@@ -19,6 +19,13 @@ class View:
                 return { "id" : c.getId(), "nome" : c.getNome() }
         return None
 
+    @staticmethod
+    def validar_email(email):
+        for c in Clientes.listar():
+            if c.getEmail() == email:
+                return "Email já existente"
+        return None
+
 
     @staticmethod
     def inserir_cliente(nome, email, fone, senha):

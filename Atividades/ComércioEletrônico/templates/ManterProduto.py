@@ -7,7 +7,7 @@ from templates.ManterCategoria import ManterCategoria
 class ManterProduto:
     def main():
         st.header("Cadastro de Produtos")
-        t1, t2, t3, t4 = st.tabs(["Inserir", "Listar", "Atualizar", "Excluir"])
+        t1, t2, t3, t4, t5 = st.tabs(["Inserir", "Listar", "Atualizar", "Excluir", "Reajustar"])
         with t1: 
             ManterProduto.inserir()
         with t2:
@@ -16,16 +16,19 @@ class ManterProduto:
             ManterProduto.atualizar()
         with t4:
             ManterProduto.excluir()
+        # with t5:
+        #     ManterProduto.reajustar()
         
     def inserir():
         descrição = st.text_input("Insira a descrição do produto: ")
         preço = st.number_input("Insira o preço do produto: ")
-        estoque = st.number_input("Insira o estoque do produto: ")
+        estoque = st.number_input("Insira o estoque do produto: ", value=0, step=1)
         ManterCategoria.listar()
-        id = st.number_input("Insira o id da categoria do produto: ")
+        categorias = View.listar_categorias()
+        id_categoria = st.selectbox("Selecione a categoria do produto:", categorias)
 
         if st.button("Inserir"):
-            View.inserir_produto(1, descrição, preço, estoque, id)
+            View.inserir_produto(1, descrição, preço, estoque, id_categoria)
             st.success("Produto inserido com sucesso!")
             time.sleep(2)
             st.rerun()
