@@ -1,4 +1,6 @@
 from View import View
+from datetime import datetime as dt
+
 
 class UI: # Interface
         
@@ -223,15 +225,14 @@ class UI: # Interface
         reajuste = float(input("Informe o percentual de reajuste em %: "))
         View.produto_reajustar(reajuste/100)
 
-    
+#FUNÇÃO PARA O CARRRINHO
 
-
-
-    # @classmethod
-    # def inserir_carrinho(cls):
-    #     UI.listar_produtos()
-    #     produto = int(input("Informe o id do produto"))
-    #     cliente = ""
-    #     p = Venda(produto, )
-
+    @classmethod
+    def cliente_adicionarProduto(cls):
+        UI.listar_produtos()
+        id = int(input("Informe o id do produto: "))
+        qtd = int(input("Informe a quantidade: "))
+        data = dt.today()
+        View.inserir_carrinho(id, data, )
+        
 UI.main() # Executando a interface

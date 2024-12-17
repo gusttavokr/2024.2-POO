@@ -4,6 +4,7 @@
 - [x] Admin - Produto
 - [] Corrigir o id da categoria do produto (Mais ou menos resolvido)
 - [x] - Visitantes
+- [ ] - Validar email
 - [ ] Admin - Venda
 - [ ] Admin - VendaItem
 - [ ] Cliente - Carrinho 

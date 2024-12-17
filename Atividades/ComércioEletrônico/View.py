@@ -92,7 +92,20 @@ class View:
         for obj in View.listar_produtos():
             View.atualizar_produtos(obj.getId(), obj.getDesc(), obj.getPreço() * (1 + percentual), obj.getEstoque(), obj.getId_Categoria())
 
+    @staticmethod
+    def conferirPreço(id, qtd):
+        for obj in View.listar_carrinho():
+            total = obj.get
 
     @staticmethod
     def inserir_carrinho(id, data, total, id_cliente):
-        c = Venda(id, data, True, total, id_cliente)
+        prod = Venda(id, data, True, total, id_cliente)
+        Vendas.inserir(prod)
+    @staticmethod
+    def listar_carrinho():
+        return Vendas.listar()
+    # @staticmethod
+    # def totalizar():
+    #     t = 0
+    #     for obj in View.listar_carrinho():
+    #         t += obj.get
