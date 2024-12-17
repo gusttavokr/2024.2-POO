@@ -4,8 +4,8 @@
 - [x] Admin - Produto
 - [x] - Visitantes
 
-- UI [x]
-- Streamlit [x]
+- [x] UI
+- [x] Streamlit
 
 - [?] Corrigir o id da categoria do produto (Mais ou menos resolvido)
 - [ ] - Validar email
