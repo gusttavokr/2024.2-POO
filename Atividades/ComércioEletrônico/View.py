@@ -2,6 +2,7 @@ from Models.Cliente import Cliente, Clientes
 from Models.Categoria import Categoria, Categorias
 from Models.Produto import Produto, Produtos
 from Models.Venda import Venda, Vendas
+import datetime
 
 class View:
 
@@ -94,16 +95,25 @@ class View:
 
     @staticmethod
     def conferirPreço(id, qtd):
-        for obj in View.listar_carrinho():
-            total = obj.get
+        preço = 0
+        for i in View.listar_produtos():
+            if i.getId() == id:
+                preço = i.getPreço() * qtd
+        return preço
 
     @staticmethod
-    def inserir_carrinho(id, data, total, id_cliente):
+    def inserir_carrinho(id, total, id_cliente):
+        data = datetime.datetime.today()
         prod = Venda(id, data, True, total, id_cliente)
         Vendas.inserir(prod)
     @staticmethod
     def listar_carrinho():
         return Vendas.listar()
+    @staticmethod
+    def total():
+        t = 0
+        for obj in View.listar_carrinho():
+            t += obj.getTotal()
     # @staticmethod
     # def totalizar():
     #     t = 0

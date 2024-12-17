@@ -1,5 +1,4 @@
 from View import View
-from datetime import datetime as dt
 
 
 class UI: # Interface
@@ -77,7 +76,7 @@ class UI: # Interface
         if op == 0: UI.sair_do_sistema()
 
         if op == 1: UI.cliente_listar_produto()
-        if op == 2: UI.cliente_adicionar_produto()
+        if op == 2: UI.cliente_adicionarProduto()
         if op == 3: UI.cliente_fechar_pedido()
         if op == 4: UI.cliente_meus_pedidos()
         return op
@@ -232,7 +231,8 @@ class UI: # Interface
         UI.listar_produtos()
         id = int(input("Informe o id do produto: "))
         qtd = int(input("Informe a quantidade: "))
-        data = dt.today()
-        View.inserir_carrinho(id, data, )
+        preço = View.conferirPreço(id, qtd)
+        cliente = cls.cliente_id
+        View.inserir_carrinho(id, preço, cliente)
         
 UI.main() # Executando a interface

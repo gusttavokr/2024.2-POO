@@ -2,10 +2,9 @@
 - [x] Admin - Cliente
 - [x] Admin - Categoria
 - [x] Admin - Produto
-- [] Corrigir o id da categoria do produto (Mais ou menos resolvido)
 - [x] - Visitantes
+- [?] Corrigir o id da categoria do produto (Mais ou menos resolvido)
 - [ ] - Validar email
-- [ ] Admin - Venda
-- [ ] Admin - VendaItem
-- [ ] Cliente - Carrinho 
+- [ ] Venda (Carrinho)
+- [ ] VendaItem (Item)
 - [ ] Diagrama UML

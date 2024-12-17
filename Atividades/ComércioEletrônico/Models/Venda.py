@@ -42,7 +42,7 @@ class Venda:
         self.__id_cliente = id_cliente
     
     def __str__(self):
-        return f"Id: {self.getId()}"
+        return f"Id - {self.getId()}"
     
 class Vendas:
     carrinho = []
@@ -55,25 +55,25 @@ class Vendas:
             if i.getId() > id:
                 id = i.getId()
         obj.setId(id+1)
-        cls.produtos.append(obj)
+        cls.carrinho.append(obj)
         cls.salvar()
 
     @classmethod
     def abrir(cls):
         cls.carrinho=[]
         try:
-            with open("Atividades/ComércioEletrônico/Json/carrinho.json", mode="r") as arquivo:
+            with open("Atividades/ComércioEletrônico/Json/Venda.json", mode="r") as arquivo:
                 carrinho_obj = json.load(arquivo)
-                for i in carrinho_obj:
-                    v = Venda(i["_Venda__id"], i["_Venda__data"], i["_Venda__carrinho"], i["_Venda__total"], i["_Venda__id_Cliente"])
+                for obj in carrinho_obj:
+                    v = Venda(obj["_Venda__id"], datetime.strptime(obj["_Venda__data"]), obj["_Venda__carrinho"], obj["_Venda__total"], obj["_Venda__id_cliente"])
                     cls.carrinho.append(v)
         except FileNotFoundError:
             pass
     
     @classmethod
     def salvar(cls):
-        with open("Atividades/ComércioEletrônico/Json/carrinho.json", mode="w") as arquivo:
-            json.dump(cls.carrinho, arquivo, default= vars) 
+        with open('Atividades/ComércioEletrônico/Json/Venda.json', mode="w") as arquivo:
+            json.dump(cls.carrinho, arquivo, default=vars) 
         
     @classmethod
     def listar(cls):
