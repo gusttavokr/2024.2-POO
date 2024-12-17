@@ -42,7 +42,7 @@ class Venda:
         self.__id_cliente = id_cliente
     
     def __str__(self):
-        return f"Id: {self.getId()} - Data: {self.getData()} - Carrinho: {self.getCarrinho} - Total: {self.getTotal} - Id_Cliente: {self.getIdCliente}"
+        return f"Id: {self.getId()}"
     
 class Vendas:
     carrinho = []
@@ -74,3 +74,30 @@ class Vendas:
     def salvar(cls):
         with open("Atividades/ComércioEletrônico/Json/carrinho.json", mode="w") as arquivo:
             json.dump(cls.carrinho, arquivo, default= vars) 
+        
+    @classmethod
+    def listar(cls):
+        cls.abrir()
+        return cls.carrinho
+
+    @classmethod
+    def listar_id(cls, id):
+        for x in cls.carrinho:
+            if x.getId() == id:
+                return x
+        return None
+
+    @classmethod
+    def atualizar(cls, obj):
+        x = cls.listar_id(obj.getId())
+        if x != None:
+            cls.carrinho.remove(x)
+            cls.carrinho.append(obj)
+            cls.salvar()
+
+    @classmethod
+    def excluir(cls, obj):
+        x = cls.listar_id(obj.getId())
+        if x != None:
+            cls.carrinho.remove(x)
+            cls.salvar()
