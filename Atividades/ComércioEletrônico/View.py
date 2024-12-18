@@ -106,14 +106,14 @@ class View:
         data = datetime.datetime.today()
         prod = Venda(id, data, True, total, id_cliente)
         Vendas.inserir(prod)
-    @staticmethod
-    def listar_carrinho():
-        return Vendas.listar()
-    @staticmethod
-    def total():
-        t = 0
-        for obj in View.listar_carrinho():
-            t += obj.getTotal()
+    # @staticmethod
+    # def listar_carrinho():
+    #     return Vendas.listar()
+    # @staticmethod
+    # def total():
+    #     t = 0
+    #     for obj in View.listar_carrinho():
+    #         t += obj.getTotal()
     # @staticmethod
     # def totalizar():
     #     t = 0

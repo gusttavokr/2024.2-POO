@@ -65,7 +65,7 @@ class Vendas:
             with open("Atividades/ComércioEletrônico/Json/Venda.json", mode="r") as arquivo:
                 carrinho_obj = json.load(arquivo)
                 for obj in carrinho_obj:
-                    v = Venda(obj["_Venda__id"], datetime.strptime(obj["_Venda__data"]), obj["_Venda__carrinho"], obj["_Venda__total"], obj["_Venda__id_cliente"])
+                    v = Venda(obj["_Venda__id"], (obj["_Venda__data"]), obj["_Venda__carrinho"], obj["_Venda__total"], obj["_Venda__id_cliente"])
                     cls.carrinho.append(v)
         except FileNotFoundError:
             pass
@@ -73,7 +73,7 @@ class Vendas:
     @classmethod
     def salvar(cls):
         with open('Atividades/ComércioEletrônico/Json/Venda.json', mode="w") as arquivo:
-            json.dump(cls.carrinho, arquivo, default=vars) 
+            json.dump(cls.carrinho, arquivo) 
         
     @classmethod
     def listar(cls):

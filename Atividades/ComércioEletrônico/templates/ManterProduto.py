@@ -18,8 +18,8 @@ class ManterProduto:
             ManterProduto.excluir()
         # with t5:
         #     ManterProduto.reajustar()
-        
-    def inserir():
+    @classmethod
+    def inserir(cls):
         descrição = st.text_input("Insira a descrição do produto: ")
         preço = st.number_input("Insira o preço do produto: ")
         estoque = st.number_input("Insira o estoque do produto: ", value=0, step=1)
@@ -27,11 +27,34 @@ class ManterProduto:
         categorias = View.listar_categorias()
         id_categoria = st.selectbox("Selecione a categoria do produto:", categorias)
 
+        # for i in categorias:
+        #     if i == id_categoria:
+        #         id_categoria = i.getDesc()
+
+        # for i in categorias:
+        #     if i == id_categoria.getDesc():
+        #         id_categoria = i.getDesc()
+            
+        id_categoria = id_categoria.getDesc()    
+
         if st.button("Inserir"):
             View.inserir_produto(1, descrição, preço, estoque, id_categoria)
             st.success("Produto inserido com sucesso!")
             time.sleep(2)
             st.rerun()
+
+            #return id_categoria
+        # if len(categorias) == 0:
+        #     st.write("Nenhuma categoria cadastrada")
+        # else:
+            # categoria = None
+        # for i in categorias:
+        #     if i.getId() == id_categoria:
+        #         categoria = i.getDesc()
+        #     return categoria
+        
+
+        
 
     def listar():
         produtos = View.listar_produtos()
@@ -72,3 +95,9 @@ class ManterProduto:
                 st.success("Produto excluído com sucesso")
                 time.sleep(2)
                 st.rerun()
+    # @staticmethod
+    # def desc(categorias, id_categoria):
+    #     for i in categorias:
+    #         if i == id_categoria:
+    #             id_categoria = i.getDesc()
+    #             return id_categoria
