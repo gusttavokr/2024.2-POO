@@ -8,8 +8,8 @@ class Produto:
         self.__estoque = estoque
         self.__id_categoria = id_categoria
 
-        if id<=0:
-            raise ValueError("Id inválido")
+        # if id<=0:
+        #     raise ValueError("Id inválido")
         if descrição == "":
             raise ValueError("Descrição inválida")
         if preço <= 0:

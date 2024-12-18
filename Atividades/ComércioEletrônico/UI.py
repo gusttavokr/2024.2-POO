@@ -75,7 +75,7 @@ class UI: # Interface
         op = int(input("\nInforme uma opção: "))
         if op == 0: UI.sair_do_sistema()
 
-        if op == 1: UI.cliente_listar_produto()
+        if op == 1: UI.cliente_listar_carrinho()
         if op == 2: UI.cliente_adicionarProduto()
         if op == 3: UI.cliente_fechar_pedido()
         if op == 4: UI.cliente_meus_pedidos()
@@ -91,7 +91,7 @@ class UI: # Interface
                 op = UI.menu_visitante()
             else:
                 admin = cls.cliente_nome == "admin"
-                print("\nBem-vindo(a), " + cls.cliente_nome)
+                print("\nBem-vindo(a), " + cls.cliente_nome + "!")
                 if admin:
                     op = UI.menu_admin()
                 else: 
@@ -228,11 +228,27 @@ class UI: # Interface
 
     @classmethod
     def cliente_adicionarProduto(cls):
-        UI.listar_produtos()
-        id = int(input("Informe o id do produto: "))
-        qtd = int(input("Informe a quantidade: "))
-        preço = View.conferirPreço(id, qtd)
-        cliente = cls.cliente_id
-        View.inserir_carrinho(id, preço, cliente)
+        op = 0
+        while op != 2:
+            if op != 2:
+                UI.listar_produtos()
+                id = int(input("Informe o id do produto: "))
+                qtd = int(input("Informe a quantidade: "))
+                preço = View.conferirPreço(id, qtd)
+                cliente = cls.cliente_id
+                View.inserir_carrinho()
+                print("1 - Inserir outro produto, 2- Sair")
+                op = int(input("Informe uma opção: "))
+            else:
+                break
+
+    @classmethod
+    def cliente_listar_carrinho(cls):
+        carrinho = View.listar_carrinho()
+        if len(carrinho) == 0:
+            print("Carrinho vazio")
+        else:
+            for produto in carrinho:
+                print(produto)
         
 UI.main() # Executando a interface
