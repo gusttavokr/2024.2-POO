@@ -43,6 +43,11 @@ class Venda:
     
     def __str__(self):
         return f"Id - {self.getId()}"
+
+    def to_json(self):
+        dic = {}
+        dic["id"] = self.id
+        dic["data"] = self.data.strftime("%d/%m/%Y")
     
 class Vendas:
     carrinho = []
