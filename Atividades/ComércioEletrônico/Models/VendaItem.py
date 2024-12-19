@@ -12,7 +12,7 @@ class VendaItem:
     def getId(self):
         return self.__id
     def setId(self, id):
-        if len(str(id)) > 0:
+        if id > 0:
             self.__id = id
         else:
             raise ValueError('Id inválido')
@@ -42,8 +42,13 @@ class VendaItem:
         self.__idProduto = idProduto
 
     def __str__(self):
-        return f"{self.__id} - {self.__qtd} - {self.__preço}"
+        return f"Id: {self.__id} - Quantidade: {self.__qtd} - Preço: {self.__preço} - IdVenda: {self.__idVenda} - IdProduto: {self.__idProduto}"
 
+    def to_json(self):
+        dic = {}
+        dic["id"] = self.getId()
+        # self.setCarrinho(str(self.getCarrinho()))
+        return dic
 
 class VendaItens:
     itens = []
@@ -73,7 +78,7 @@ class VendaItens:
 
     @classmethod
     def salvar(cls):
-        with open ("Atividades/ComércioEletrônico/Json/itens.json", mode="r") as arquivo:
+        with open ("Atividades/ComércioEletrônico/Json/itens.json", mode="w") as arquivo:
             json.dump(cls.itens, arquivo, default=vars)
 
     @classmethod

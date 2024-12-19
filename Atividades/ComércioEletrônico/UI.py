@@ -77,8 +77,8 @@ class UI: # Interface
 
         if op == 1: UI.cliente_listar_carrinho()
         if op == 2: UI.cliente_adicionarProduto()
-        if op == 3: UI.cliente_fechar_pedido()
-        if op == 4: UI.cliente_meus_pedidos()
+        if op == 3: UI.fechar_carrinho()
+        if op == 4: UI.Ver_Pedidos()
         return op
     
     @classmethod
@@ -228,20 +228,21 @@ class UI: # Interface
 
     @classmethod
     def cliente_adicionarProduto(cls):
-        op = 0
-        while op != 2:
-            if op != 2:
-                UI.listar_produtos()
-                id = int(input("Informe o id do produto: "))
-                qtd = int(input("Informe a quantidade: "))
-                preço = View.conferirPreço(id, qtd)
-                cliente = cls.cliente_id
-                View.inserir_carrinho()
-                print("1 - Inserir outro produto, 2- Sair")
-                op = int(input("Informe uma opção: "))
-            else:
-                break
+        UI.listar_produtos()
+        id = int(input("Informe o id do produto: "))
+        qtd = int(input("Informe a quantidade: "))
 
+        #cliente = cls.cliente_id 
+        View.inserir_carrinho(qtd, id)
+        #View.inserir_venda(cliente)
+        # print("1 - Inserir outro produto, 2- Sair")
+        # op = int(input("Informe uma opção: "))
+                
+
+                # total = View.conferirPreço(id, qtd)
+                # cliente = cls.cliente_id
+
+                # View.inserir_venda(total, cliente)
     @classmethod
     def cliente_listar_carrinho(cls):
         carrinho = View.listar_carrinho()
@@ -250,5 +251,20 @@ class UI: # Interface
         else:
             for produto in carrinho:
                 print(produto)
+
+    @classmethod
+    def fechar_carrinho(cls):
+        cliente = cls.cliente_id
+        View.inserir_venda(cliente)
+        print("Pedido feito com sucesso!")
+    
+    @classmethod
+    def Ver_Pedidos(cls):
+        pedidos = View.listar_venda()
+        if len(pedidos) == 0:
+            print("Nenhum pedido feito")
+        else:
+            for i in pedidos:
+                print(i)
         
 UI.main() # Executando a interface

@@ -42,12 +42,11 @@ class Venda:
         self.__id_cliente = id_cliente
     
     def __str__(self):
-        return f"Id - {self.getId()}"
+        return f"Id - {self.getId()} - Data: {self.getData()} - Total: {self.getTotal()}"
 
     def to_json(self):
         dic = {}
         dic["id"] = self.getId()
-        # self.setCarrinho(str(self.getCarrinho()))
         dic["carrinho"] = self.getCarrinho()
         dic["total"] = self.getTotal()
         dic["id_cliente"] = self.getIdCliente()

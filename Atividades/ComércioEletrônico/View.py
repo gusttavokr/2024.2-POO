@@ -94,30 +94,72 @@ class View:
         for obj in View.listar_produtos():
             View.atualizar_produtos(obj.getId(), obj.getDesc(), obj.getPreço() * (1 + percentual), obj.getEstoque(), obj.getId_Categoria())
 
-    @staticmethod
-    def conferirPreço(id, qtd):
-        preço = 0
-        for i in View.listar_produtos():
-            if i.getId() == id:
-                preço = i.getPreço() * qtd
-        return preço
+    # @staticmethod
+    # def totalizar(id, qtd):
+    #     preço = 0
+    #     for i in View.listar_produtos():
+    #         if i.getId() == id:
+    #             preço = i.getPreço() * qtd
+    #     return preço
 
     @staticmethod
-    def inserir_carrinho(id, qtd):
+    def inserir_carrinho(qtd, id_produto):
         for i in View.listar_produtos():
-            if i.getId() == id:
+            if i.getId() == id_produto:
                 preço = i.getPreço()
         
-        View.inserir_carrinho(1, qtd, preço, )
+        carrinho = VendaItem(1, qtd, preço, 1, id_produto)
+        VendaItens.inserir(carrinho)
+
+    # @staticmethod
+    # def inserir_venda(id_cliente):
+
+    #     venda = View.listar_venda()
+    #     if venda == None:
+    #         total = 0
+    #         for i in View.listar_carrinho():
+    #             total += i.getPreço()
+        
+    #         data = datetime.datetime.today()
+    #         venda = Venda(1, data, True, total, id_cliente)
+    #         Vendas.inserir(venda)
+    #     else:
+    #         for x in View.listar_venda():
+    #             if x.getIdCliente() == id_cliente:
+    #                 total = 0
+    #                 for i in View.listar_carrinho():
+    #                     total += i.getPreço()
+                
+    #                 data = datetime.datetime.today()
+    #                 venda = Venda(1, data, True, total, id_cliente)
+    #                 Vendas.atualizar(venda)                
+
+    @staticmethod
+    def inserir_venda(id_cliente):
+        total = 0
+        for i in View.listar_carrinho():
+            total += i.getPreço()*i.getQtd()
+    
+        data = datetime.datetime.today()
+        venda = Venda(1, data, True, total, id_cliente)
+        Vendas.inserir(venda)
+
+
+
+        
+
     # @staticmethod
     # def inserir_carrinho(id, total, id_cliente):
     #     data = datetime.datetime.today()
     #     prod = Venda(id, data, True, total, id_cliente)
     #     Vendas.inserir(prod)
 
-    # @staticmethod
-    # def listar_carrinho():
-    #     return VendaItens.listar()
+    @staticmethod
+    def listar_carrinho():
+        return VendaItens.listar()
+    @staticmethod
+    def listar_venda():
+        return Vendas.listar()
     # @staticmethod
     # def total():
     #     t = 0

@@ -9,6 +9,6 @@
 
 - [?] Corrigir o id da categoria do produto (Mais ou menos resolvido)
 - [ ] - Validar email
-- [ ] Venda (Carrinho)
-- [ ] VendaItem (Item)
+- [?] Venda (Carrinho)
+- [?] VendaItem (Item)
 - [ ] Diagrama UML
