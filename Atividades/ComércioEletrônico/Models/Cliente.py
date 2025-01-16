@@ -8,6 +8,9 @@ class Cliente:
         self.__fone = fone
         self.__senha = senha #fazer get e set
 
+        if nome == "":
+            raise ValueError("Nome inválido")
+        
     def getId(self):
         return self.__id
     def setId(self, id):

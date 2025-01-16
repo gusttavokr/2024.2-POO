@@ -19,10 +19,13 @@ class ManterCliente:
         senha = st.text_input("Informe a senha do usuário:", type="password")
 
         if st.button("Cadastrar"):
-            View.inserir_cliente(nome, email, fone, senha)
-            st.success("Cliente inserido com sucesso")
-            time.sleep(2)
-            st.rerun()
+            try:
+                View.inserir_cliente(nome, email, fone, senha)
+                st.success("Cliente inserido com sucesso")
+                time.sleep(2)
+                st.rerun()
+            except Exception as erro:
+                st.error(erro)
 
     def listar():
         clientes = View.listar_clientes()

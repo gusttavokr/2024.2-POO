@@ -12,10 +12,10 @@ class Produto:
         #     raise ValueError("Id inválido")
         if descrição == "":
             raise ValueError("Descrição inválida")
-        if preço <= 0:
-            raise ValueError("Preço inválido")
+        if preço < 0:
+            raise ValueError("Preço NÃO pode ser negativo")
         if estoque < 0:
-            raise ValueError("Estoque inválido")
+            raise ValueError("Estoque NÃO pode ser negativo")
         
     def getId(self):
         return self.__id
