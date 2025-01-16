@@ -44,8 +44,8 @@ class View:
         Clientes.atualizar(cliente) # Usando o método atualizar na variável cliente
 
     @staticmethod
-    def excluir_clientes(id):
-        c = Cliente(id, "", "", "", "")
+    def excluir_clientes(id, nome, email, telefone):
+        c = Cliente(id, nome, email, telefone, 888)
         Clientes.excluir(c)
 
     

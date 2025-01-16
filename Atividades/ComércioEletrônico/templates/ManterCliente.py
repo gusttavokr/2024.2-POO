@@ -61,6 +61,7 @@ class ManterCliente:
             st.write("Nenhum cliente cadastrado")
         else:
             op = st.selectbox("Excluir cliente", clientes)
+            print(op)
             if st.button("Excluir"):
                 View.excluir_clientes(op.getId())
                 st.success("Cliente excluído com sucesso")
