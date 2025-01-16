@@ -26,6 +26,16 @@ O conceito de Abstração é justamente o que a própria palavra significa. ABST
 
 Resumindo: Simplifica a complexidade do sistema ao esconder detalhes desnecessários. Traduzindo o seu código pro mundo real.
 
+### 3. Herança
+Resumidamente, são classes que herdam classes, por exemplo:
+```
+class Mamífero:
+    pass
+  
+class Gato(mamífero):
+    pass
+```
+
 -----------------------------------------
 <div align="center">
 Em construção
