@@ -22,21 +22,17 @@ class View:
         return None
 
     @staticmethod
-    def validar_email(email):
-        for c in Clientes.listar():
-            if c.getEmail() == email:
-                return "Email já existente"
-        return None
-
-
-    @staticmethod
     def inserir_cliente(nome, email, fone, senha):
-        try:
-            cliente = Cliente(0, nome, email, fone, senha) 
-            Clientes.inserir(cliente)
-        except:
-            ValueError('Nome ou email inválido')
-
+        for c in Clientes.listar():
+            #print(f'Email do cliente {c.getEmail()}')
+            if c.getEmail() == email:
+                raise ValueError ("Email já existente")
+            
+        if nome == "" or email == "":
+            raise ValueError("Nome ou email vazios")
+        
+        cliente = Cliente(0, nome, email, fone, senha)
+        Clientes.inserir(cliente)
 
     @staticmethod
     def listar_clientes():
@@ -44,6 +40,13 @@ class View:
     
     @staticmethod
     def atualizar_clientes(id, nome, email, fone, senha):
+        for c in Clientes.listar():
+                #print(f'Email do cliente {c.getEmail()}')
+            if c.getEmail() == email:
+                raise ValueError ("Email já existente")
+                
+        if nome == "" or email == "":
+            raise ValueError("Nome ou email vazios")
         cliente = Cliente(id, nome, email, fone, senha)
         Clientes.atualizar(cliente) # Usando o método atualizar na variável cliente
 

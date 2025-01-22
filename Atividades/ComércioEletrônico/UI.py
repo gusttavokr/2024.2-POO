@@ -106,6 +106,7 @@ class UI: # Interface
     @classmethod
     def visitante_abrir_conta(cls):
         cls.inserir_cliente()
+        #cls.validar_email()
     @classmethod
     def cliente_entrar_sistema(cls):
         email = input("Informe o email: ")
@@ -123,10 +124,10 @@ class UI: # Interface
     def inserir_cliente(): # Criando um cliente
         nome = input("Digite o nome: ")
         email = input("Digite o email: ")
-        View.validar_email(email)
         fone = input("Digite o fone: ")
         senha = input("Digite a senha: ")
         View.inserir_cliente(nome, email, fone, senha)
+        #View.validar_email(email)
 
     @classmethod
     def listar_clientes(cls): # Listando os clientes
