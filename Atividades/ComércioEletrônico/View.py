@@ -93,7 +93,7 @@ class View:
 
     @staticmethod
     def inserir_produto(id, Descrição, Preço, Estoque, id_categoria):
-        for c in Produtos.listar():
+        for c in Produtos.listarProd():
             if c.getPreço() < 0 or c.getEstoque() < 0:
                 raise ValueError ("Preço ou estoque inválido")
                 
@@ -108,7 +108,7 @@ class View:
     
     @staticmethod
     def atualizar_produtos(id, descrição, preço, estoque, id_categoria):
-        for c in Produtos.listar():
+        for c in Produtos.listarProd():
             if c.getPreço() < 0 or c.getEstoque() < 0:
                 raise ValueError ("Preço ou estoque inválido")
                 
@@ -123,6 +123,8 @@ class View:
 
     @staticmethod
     def produto_reajustar(percentual):
+        if percentual <= 0 or percentual == "":
+            raise ValueError('Percentual inválido')
         for obj in View.listar_produtos():
             View.atualizar_produtos(obj.getId(), obj.getDesc(), obj.getPreço() * (1 + percentual), obj.getEstoque(), obj.getId_Categoria())
 
