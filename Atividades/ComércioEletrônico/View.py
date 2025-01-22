@@ -31,8 +31,12 @@ class View:
 
     @staticmethod
     def inserir_cliente(nome, email, fone, senha):
-        cliente = Cliente(1, nome, email, fone, senha) 
-        Clientes.inserir(cliente)
+        try:
+            cliente = Cliente(0, nome, email, fone, senha) 
+            Clientes.inserir(cliente)
+        except:
+            ValueError('Nome ou email inválido')
+
 
     @staticmethod
     def listar_clientes():
@@ -44,8 +48,8 @@ class View:
         Clientes.atualizar(cliente) # Usando o método atualizar na variável cliente
 
     @staticmethod
-    def excluir_clientes(id, nome, email, telefone):
-        c = Cliente(id, nome, email, telefone, 888)
+    def excluir_clientes(id):
+        c = Cliente(id, "", "", "", "")
         Clientes.excluir(c)
 
     
