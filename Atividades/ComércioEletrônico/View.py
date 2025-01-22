@@ -93,6 +93,12 @@ class View:
 
     @staticmethod
     def inserir_produto(id, Descrição, Preço, Estoque, id_categoria):
+        for c in Produtos.listar():
+            if c.getPreço() < 0 or c.getEstoque() < 0:
+                raise ValueError ("Preço ou estoque inválido")
+                
+        if Descrição == "" or id_categoria == "":
+            raise ValueError("Descrição ou categoria vazia")
         prod = Produto(id, Descrição, Preço, Estoque, id_categoria)
         Produtos.inserir(prod)
 
@@ -102,6 +108,12 @@ class View:
     
     @staticmethod
     def atualizar_produtos(id, descrição, preço, estoque, id_categoria):
+        for c in Produtos.listar():
+            if c.getPreço() < 0 or c.getEstoque() < 0:
+                raise ValueError ("Preço ou estoque inválido")
+                
+        if descrição == "" or id_categoria == "":
+            raise ValueError("Descrição ou categoria vazia")
         prod = Produto(id, descrição, preço, estoque, id_categoria)
         Produtos.atualizarProd(prod)
 
