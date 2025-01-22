@@ -60,6 +60,13 @@ class View:
 
     @staticmethod
     def inserir_categoria(Descrição):
+        for c in Categorias.listar():
+            if c.getDesc() == Descrição:
+                raise ValueError ("Descrição já existente")
+                
+        if Descrição == "":
+            raise ValueError("Descrição vazia")
+        
         ct = Categoria(1, Descrição)
         Categorias.inserir(ct)
 
@@ -69,6 +76,12 @@ class View:
     
     @staticmethod
     def atualizar_categorias(id, Descrição):
+        for c in Categorias.listar():
+            if c.getDesc() == Descrição:
+                raise ValueError ("Descrição já existente")
+                
+        if Descrição == "":
+            raise ValueError("Descrição vazia")
         categoria = Categoria(id, Descrição)
         Categorias.atualizar(categoria)
 
