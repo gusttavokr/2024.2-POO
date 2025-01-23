@@ -104,7 +104,7 @@ class View:
 
     @staticmethod
     def listar_produtos():
-       return Produtos.listarProd()
+       return Produtos.listar()
     
     @staticmethod
     def atualizar_produtos(id, descrição, preço, estoque, id_categoria):

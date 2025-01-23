@@ -1,4 +1,5 @@
 import json
+from Models.Modelo import Modelo
 
 class Cliente:
     def __init__(self, id, nome, email, fone, senha): # Método construtor
@@ -51,20 +52,7 @@ class Cliente:
     def __str__(self): # Formatação do terminal
         return f'{self.getId()} - Nome: {self.getNome()} - Email: {self.getEmail()} - Telefone: {self.getFone()}'
     
-class Clientes:
-    objetos = [] # Lista de Objetos, (no caso clientes), que serão usados
-
-    @classmethod
-    def inserir(cls, obj):
-        cls.abrir() # Abrindo o arquivo json, onde está registrado os clientes
-        id = 0 # O id começa em zero
-        for x in cls.objetos: # Percorrendo a lista de objetos
-            if x.getId() > id: # Se o x for maior que o id
-                id = x.getId() # Ele se tornará o x.id
-        obj.setId(id+1) # O id do objeto será o maior, mais um
-        cls.objetos.append(obj) 
-        cls.salvar() # Use o método para salvar a alteração
-
+class Clientes(Modelo):
     @classmethod
     def salvar(cls): 
         # Mesma coisa do abrir, porém ele escreve por cima
@@ -87,33 +75,3 @@ class Clientes:
             pass
         except json.JSONDecodeError:
             pass
-
-    @classmethod
-    def listar(cls):
-        cls.abrir() # Abrindo o dicionário
-        return cls.objetos # Retornando a lista dos objetos
-
-    @classmethod
-    def listar_id(cls, id): # Método para retornar o id da lista
-        for x in cls.objetos:
-            if x.getId() == id: # Se x for igual ao id, retorne x
-                return x
-        return None 
-
-    @classmethod
-    def atualizar(cls, obj):
-        x = cls.listar_id(obj.getId()) # Chamando a lista de id
-        if x != None: # Se for diferente de nada
-            cls.objetos.remove(x)
-            cls.objetos.append(obj)
-            #x.setNome(obj.getNome())
-            #x.setEmail(obj.getEmail())
-            #x.setFone(obj.getFone())
-            cls.salvar()
-
-    @classmethod
-    def excluir(cls, obj):
-        x = cls.listar_id(obj.getId())
-        if x != None:
-            cls.objetos.remove(x)
-            cls.salvar()

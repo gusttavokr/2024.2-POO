@@ -1,4 +1,5 @@
 import json
+from Models.Modelo import Modelo
 
 class Produto:
     def __init__(self, id, descrição, preço, estoque, id_categoria):
@@ -53,8 +54,7 @@ class Produto:
     def __str__(self):
         return f"{self.getId()} - Produto: {self.getDesc()} - R${self.getPreço():.2f} - {self.getEstoque()} unidades"
     
-class Produtos:
-    produtos = []
+class Produtos(Modelo):
 
     @classmethod
     def abrirProd(cls):
@@ -69,48 +69,8 @@ class Produtos:
         except FileNotFoundError:
             pass
     
-    @classmethod
-    def inserir(cls, obj):
-        cls.abrirProd()
-        id = 0
-        for i in cls.produtos:
-            if i.getId() > id:
-                id = i.getId()
-        obj.setId(id+1)
-        cls.produtos.append(obj)
-        cls.salvarProd()
 
     @classmethod
     def salvarProd(cls):
         with open('Atividades/ComércioEletrônico/Json/produtos.json', mode="w") as arquivo:
             json.dump(cls.produtos, arquivo, default=vars)
-
-    @classmethod
-    def listarProd(cls):
-        cls.abrirProd()
-        return cls.produtos
-    
-    @classmethod
-    def listarId(cls, id):
-        for x in cls.produtos:
-            if x.getId() == id:
-                return x
-        return None
-
-    @classmethod
-    def atualizarProd(cls, obj):
-        x = cls.listarId(obj.getId())
-        if x != None:
-            cls.produtos.remove(x)
-            cls.produtos.append(obj)
-            #x.setDesc(obj.getDesc())
-            #x.setPreço(obj.getPreço())
-            #x.setEstoque(obj.getEstoque())
-            cls.salvarProd()
-
-    @classmethod
-    def excluir(cls, obj):
-        x = cls.listarId(obj.getId())
-        if x != None:
-            cls.produtos.remove(x)
-            cls.salvarProd()

@@ -1,4 +1,5 @@
 import json
+from Models.Modelo import Modelo
 
 class Categoria:
     def __init__(self, id, descrição): # Método construtor
@@ -24,8 +25,7 @@ class Categoria:
     def __str__(self):
         return f'{self.getId()} - {self.getDesc()}'
 
-class Categorias:
-    categorias = []
+class Categorias(Modelo):
 
     @classmethod
     def abrirCat(cls):
@@ -45,42 +45,3 @@ class Categorias:
     def salvarCat(cls):
         with open('Atividades/ComércioEletrônico/Json/categorias.json', mode='w') as arquivo:
             json.dump(cls.categorias, arquivo, default=vars)
-
-    @classmethod
-    def inserir(cls, obj):
-        cls.abrirCat()
-        id = 0
-        for x in cls.categorias:
-            if x.getId() > id:
-                id = x.getId()
-        obj.setId(id+1)
-        cls.categorias.append(obj)
-        cls.salvarCat()
-
-    @classmethod
-    def listar(cls):
-        cls.abrirCat()
-        return cls.categorias
-    
-    @classmethod
-    def listar_id(cls, id):
-        for x in cls.categorias:
-            if x.getId() == id:
-                return x
-        return None
-
-    @classmethod
-    def atualizar(cls, obj):
-        x = cls.listar_id(obj.getId())
-        if x != None:
-            cls.categorias.remove(x)
-            cls.categorias.append(obj)
-            #x.setDesc(obj.getDesc())
-            cls.salvarCat()
-
-    @classmethod
-    def excluir(cls, obj):
-        x = cls.listar_id(obj.getId())
-        if x != None:
-            cls.categorias.remove(x)
-            cls.salvarCat()
